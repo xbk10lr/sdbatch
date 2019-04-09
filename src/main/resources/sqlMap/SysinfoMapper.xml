@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sd.dao.mapper.SysinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sd.dto.generate.Sysinfo">
+    <id column="SYSNBR" jdbcType="VARCHAR" property="sysnbr" />
+    <result column="PREDATE" jdbcType="DATE" property="predate" />
+    <result column="NOWDATE" jdbcType="DATE" property="nowdate" />
+    <result column="NEXTDATE" jdbcType="DATE" property="nextdate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SYSNBR, PREDATE, NOWDATE, NEXTDATE
+  </sql>
+  <select id="selectByExample" parameterType="com.sd.dto.generate.SysinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SYSINFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYSINFO
+    where SYSNBR = #{sysnbr,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYSINFO
+    where SYSNBR = #{sysnbr,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sd.dto.generate.SysinfoExample">
+    delete from SYSINFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sd.dto.generate.Sysinfo">
+    insert into SYSINFO (SYSNBR, PREDATE, NOWDATE, 
+      NEXTDATE)
+    values (#{sysnbr,jdbcType=VARCHAR}, #{predate,jdbcType=DATE}, #{nowdate,jdbcType=DATE}, 
+      #{nextdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sd.dto.generate.Sysinfo">
+    insert into SYSINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysnbr != null">
+        SYSNBR,
+      </if>
+      <if test="predate != null">
+        PREDATE,
+      </if>
+      <if test="nowdate != null">
+        NOWDATE,
+      </if>
+      <if test="nextdate != null">
+        NEXTDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysnbr != null">
+        #{sysnbr,jdbcType=VARCHAR},
+      </if>
+      <if test="predate != null">
+        #{predate,jdbcType=DATE},
+      </if>
+      <if test="nowdate != null">
+        #{nowdate,jdbcType=DATE},
+      </if>
+      <if test="nextdate != null">
+        #{nextdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sd.dto.generate.SysinfoExample" resultType="java.lang.Long">
+    select count(*) from SYSINFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SYSINFO
+    <set>
+      <if test="record.sysnbr != null">
+        SYSNBR = #{record.sysnbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.predate != null">
+        PREDATE = #{record.predate,jdbcType=DATE},
+      </if>
+      <if test="record.nowdate != null">
+        NOWDATE = #{record.nowdate,jdbcType=DATE},
+      </if>
+      <if test="record.nextdate != null">
+        NEXTDATE = #{record.nextdate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SYSINFO
+    set SYSNBR = #{record.sysnbr,jdbcType=VARCHAR},
+      PREDATE = #{record.predate,jdbcType=DATE},
+      NOWDATE = #{record.nowdate,jdbcType=DATE},
+      NEXTDATE = #{record.nextdate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.Sysinfo">
+    update SYSINFO
+    <set>
+      <if test="predate != null">
+        PREDATE = #{predate,jdbcType=DATE},
+      </if>
+      <if test="nowdate != null">
+        NOWDATE = #{nowdate,jdbcType=DATE},
+      </if>
+      <if test="nextdate != null">
+        NEXTDATE = #{nextdate,jdbcType=DATE},
+      </if>
+    </set>
+    where SYSNBR = #{sysnbr,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.Sysinfo">
+    update SYSINFO
+    set PREDATE = #{predate,jdbcType=DATE},
+      NOWDATE = #{nowdate,jdbcType=DATE},
+      NEXTDATE = #{nextdate,jdbcType=DATE}
+    where SYSNBR = #{sysnbr,jdbcType=VARCHAR}
+  </update>
+</mapper>

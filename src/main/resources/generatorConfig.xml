@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar" />
+  <context id="context1">
+   <commentGenerator>  
+       <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+       <property name="suppressAllComments" value="true" />  
+    </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://45.40.198.219:3306/sddb" driverClass="com.mysql.jdbc.Driver" password="uppdb" userId="uppdb" />
+    <javaModelGenerator targetPackage="com.sd.dto.generate" targetProject="sd-batch" />
+    <sqlMapGenerator targetPackage="com.sd.dao.sqlMap" targetProject="sd-batch" />
+    <javaClientGenerator targetPackage="com.sd.dao.mapper" targetProject="sd-batch" type="XMLMAPPER" />
+    <!-- <table schema="" tableName="CHANNELORDER">
+    </table>
+    <table schema="" tableName="MERORDER">
+    </table>
+    <table schema="" tableName="DOWNORDER">
+    </table>
+    <table schema="" tableName="CHANNELORDERHIST">
+    </table>
+    <table schema="" tableName="MERORDERHIST">
+    </table>
+    <table schema="" tableName="SYSINFO">
+    </table>
+    <table schema="" tableName="CHECKCHANNELREG">
+    </table>
+    <table schema="" tableName="CHANNELORDERSUM">
+    </table>
+    <table schema="" tableName="CHECKERROR">
+    </table>
+    <table schema="" tableName="CHANNELMERCHECK">
+    </table>
+    <table schema="" tableName="MERORDERSUM">
+    </table>
+    <table schema="" tableName="MERCHECKFILEINFO">
+    </table> -->
+    <table schema="" tableName="BATCH_JOB_INSTANCE">
+    </table>
+    <table schema="" tableName="BATCH_JOB_EXECUTION">
+    </table>
+    <table schema="" tableName="BATCH_JOB_EXECUTION_PARAMS">
+    </table>
+    <table schema="" tableName="BATCH_STEP_EXECUTION">
+    </table>
+    <table schema="" tableName="BATCH_STEP_EXECUTION_CONTEXT">
+    </table>
+    <table schema="" tableName="BATCH_JOB_EXECUTION_CONTEXT">
+    </table>
+    <table schema="" tableName="BATCH_STEP_EXECUTION_SEQ">
+    </table>
+    <table schema="" tableName="BATCH_JOB_EXECUTION_SEQ">
+    </table>
+    <table schema="" tableName="BATCH_JOB_SEQ">
+    </table>
+    <!-- <table schema="" tableName="JOBTASKINFO">
+    </table> -->
+  </context>
+</generatorConfiguration>
