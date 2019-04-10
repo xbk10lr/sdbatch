@@ -1,7 +1,5 @@
 package com.sd.batch.step;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import com.sd.batch.listener.StepCommonListener;
 import com.sd.batch.tasklet.Test1Tasklet;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class TestStep1 {
-	private static final Logger log = LoggerFactory.getLogger(TestStep1.class);
 	
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;

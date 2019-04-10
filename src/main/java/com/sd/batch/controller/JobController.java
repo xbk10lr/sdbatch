@@ -1,8 +1,6 @@
 package com.sd.batch.controller;
 
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.JobParametersInvalidException;
@@ -20,15 +18,17 @@ import com.sd.base.SpringUtils;
 import com.sd.scheduletask.CronTriggerFactory;
 import com.sd.scheduletask.DataPrepareYfbQuartzJobBean;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 任务控制器，用于对外提供触发任务队列的接口
  * @author Administrator
  *
  */
+@Slf4j
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
-	private static final Logger log = LoggerFactory.getLogger(JobController.class);
 	
 	@Autowired
 	private CronTriggerFactory cronTriggerFactory;

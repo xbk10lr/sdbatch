@@ -5,13 +5,14 @@ import org.springframework.batch.core.JobExecutionListener;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class JobCommonListener implements JobExecutionListener {
 	
 	long startTime;
 	
 	long endTime;
 	
-	@Slf4j
+	
 	@Override
 	public void afterJob(JobExecution arg0) {
 		endTime = System.currentTimeMillis();
