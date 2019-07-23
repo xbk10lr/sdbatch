@@ -2,9 +2,11 @@ package com.sd.batch.listener;
 
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
+import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Component
 @Slf4j
 public class JobCommonListener implements JobExecutionListener {
 	
@@ -16,13 +18,14 @@ public class JobCommonListener implements JobExecutionListener {
 	@Override
 	public void afterJob(JobExecution arg0) {
 		endTime = System.currentTimeMillis();
-		log.info("<<<<<<<<<<<<<<<<<<<<DataJudgeStlmStepListener end");
+		log.info("<<<<<<<<<<<<<<<<<<<<JobCommonListener end");
 		log.info("<<<<<<<<<<<<<<<<<<<<耗时："+((endTime - startTime) + "ms"));
 	}
 
 	@Override
 	public void beforeJob(JobExecution arg0) {
-		// TODO Auto-generated method stub
+		log.info("<<<<<<<<<<<<<<<<<<<<JobCommonListener start");
+		startTime = System.currentTimeMillis();
 
 	}
 
