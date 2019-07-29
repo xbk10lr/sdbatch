@@ -1,4 +1,4 @@
-package com.sd.scheduletask;
+package com.sd.schedule;
 
 import org.joda.time.DateTime;
 import org.quartz.JobExecutionContext;
@@ -12,25 +12,26 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
-import org.springframework.stereotype.Component;
 
-import com.sd.base.DateUtil;
-import com.sd.base.SpringUtils;
+import com.sd.utils.DateUtil;
+import com.sd.utils.SpringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
-public class DataPrepareYfbQuartzJobBean extends QuartzJobBean {
+public abstract class AbstractQuarzJobBean extends QuartzJobBean {
 	
+	
+	protected abstract String getJobName();
+
 	@Override
-	protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+	protected void executeInternal(JobExecutionContext arg0) throws JobExecutionException {
 		try {
-			Job dataPrepareYfbJob = (Job) SpringUtils.getBeanObj("dPYfbJob");
+			Job job = (Job) SpringUtils.getBeanObj(getJobName());
 			JobLauncher jobLauncher = (JobLauncher) SpringUtils.getBeanObj("jobLauncher");
 			JobParameters jobParameters = new JobParametersBuilder()
 				.addString("date", DateTime.now().minusDays(1).toString(DateUtil.DATE_FORMAT_YYYY_MM_DD)).toJobParameters();
-			jobLauncher.run(dataPrepareYfbJob, jobParameters);
+			jobLauncher.run(job, jobParameters);
 		} catch (JobExecutionAlreadyRunningException e) {
 			log.error("JobExecutionAlreadyRunningException error:{}",e);
 		} catch (JobRestartException e) {
@@ -42,6 +43,7 @@ public class DataPrepareYfbQuartzJobBean extends QuartzJobBean {
 		} catch (Exception e) {
 			log.error("exception:{}",e);
 		}
+
 	}
 
 }

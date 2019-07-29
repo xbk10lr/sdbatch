@@ -1,4 +1,4 @@
-package com.sd.base;
+package com.sd.utils;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;

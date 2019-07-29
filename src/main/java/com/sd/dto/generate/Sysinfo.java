@@ -42,4 +42,10 @@ public class Sysinfo {
     public void setNextdate(Date nextdate) {
         this.nextdate = nextdate;
     }
+
+	@Override
+	public String toString() {
+		return "Sysinfo [sysnbr=" + sysnbr + ", predate=" + predate + ", nowdate=" + nowdate + ", nextdate=" + nextdate
+				+ "]";
+	}
 }

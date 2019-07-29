@@ -18,13 +18,13 @@ public class JobCommonListener implements JobExecutionListener {
 	@Override
 	public void afterJob(JobExecution arg0) {
 		endTime = System.currentTimeMillis();
-		log.info("<<<<<<<<<<<<<<<<<<<<JobCommonListener end");
+		log.info("<<<<<<<<<<<<<<<<<<<<Job end");
 		log.info("<<<<<<<<<<<<<<<<<<<<耗时："+((endTime - startTime) + "ms"));
 	}
 
 	@Override
 	public void beforeJob(JobExecution arg0) {
-		log.info("<<<<<<<<<<<<<<<<<<<<JobCommonListener start");
+		log.info("<<<<<<<<<<<<<<<<<<<<Job start");
 		startTime = System.currentTimeMillis();
 
 	}

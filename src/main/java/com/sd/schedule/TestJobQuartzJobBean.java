@@ -1,4 +1,4 @@
-package com.sd.scheduletask;
+package com.sd.schedule;
 
 public class TestJobQuartzJobBean extends AbstractQuarzJobBean{
 

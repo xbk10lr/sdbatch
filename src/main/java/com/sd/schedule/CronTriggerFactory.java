@@ -1,4 +1,4 @@
-package com.sd.scheduletask;
+package com.sd.schedule;
 
 import java.util.Date;
 

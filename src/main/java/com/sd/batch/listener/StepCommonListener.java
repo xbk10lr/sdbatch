@@ -18,7 +18,7 @@ public class StepCommonListener implements StepExecutionListener {
 	@Override
 	public ExitStatus afterStep(StepExecution arg0) {
 		endTime = System.currentTimeMillis();
-		log.info("<<<<<<<<<<<<<<<<<<<<DataJudgeStlmStepListener end");
+		log.info("<<<<<<<<<<<<<<<<<<<<Step  end");
 		log.info("<<<<<<<<<<<<<<<<<<<<耗时："+((endTime - startTime) + "ms"));
 		return ExitStatus.COMPLETED;
 	}
@@ -26,7 +26,7 @@ public class StepCommonListener implements StepExecutionListener {
 	@Override
 	public void beforeStep(StepExecution arg0) {
 		startTime = System.currentTimeMillis();
-		log.info("DataJudgeStlmStepListener begin>>>>>>>>>");		
+		log.info("Step begin>>>>>>>>>");		
 	}
 
 }

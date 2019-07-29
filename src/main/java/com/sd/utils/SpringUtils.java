@@ -1,4 +1,4 @@
-package com.sd.base;
+package com.sd.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
