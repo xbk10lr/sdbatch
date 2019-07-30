@@ -13,8 +13,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sd.constants.JobConstants;
+import com.sd.schedule.AbstractQuarzJobBean;
 import com.sd.schedule.CronTriggerFactory;
-import com.sd.schedule.DataPrepareYfbQuartzJobBean;
 import com.sd.utils.DateUtil;
 import com.sd.utils.SpringUtils;
 
@@ -107,8 +108,9 @@ public class JobController {
 	 */
 	@RequestMapping("/create")
 	public boolean createJob(String expression,String jobName) {
-		log.info("expression:{},taskId:{}",expression,jobName);
-		boolean flag = cronTriggerFactory.createTimingTask(expression, jobName, DataPrepareYfbQuartzJobBean.class);
+		log.info("start create Job, expression:{},taskId:{}",expression,jobName);
+		AbstractQuarzJobBean jobBean = (AbstractQuarzJobBean) SpringUtils.getBeanObj(jobName.trim()+JobConstants.QUARTZ_JOB_BEAN_SUFFIX);
+		boolean flag = cronTriggerFactory.createTimingTask(expression, jobName, jobBean.getClass());
 		return flag;
 	}
 	

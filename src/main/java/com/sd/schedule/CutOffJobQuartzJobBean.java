@@ -3,11 +3,11 @@ package com.sd.schedule;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TestJobQuartzJobBean extends AbstractQuarzJobBean{
+public class CutOffJobQuartzJobBean extends AbstractQuarzJobBean{
 
 	@Override
 	protected String getJobName() {
-		return "testJob";
+		return "cutOffJob";
 	}
 
 }
