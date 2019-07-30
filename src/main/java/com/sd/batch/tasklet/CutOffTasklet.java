@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sd.constants.SysNbr;
-import com.sd.dao.mapper.SysinfoMapper;
-import com.sd.dto.generate.Sysinfo;
+import com.sd.dao.mapper.SysInfoMapper;
+import com.sd.dto.generate.SysInfo;
 import com.sd.utils.DateUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,21 +21,21 @@ import lombok.extern.slf4j.Slf4j;
 public class CutOffTasklet implements Tasklet{
 
 	@Autowired
-	private SysinfoMapper sysinfoMapper;
+	private SysInfoMapper sysInfoMapper;
 	
 	@Override
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1) throws Exception {
 		log.info("cut off tasklet start");
-		Sysinfo sysinfo = sysinfoMapper.selectByPrimaryKey(SysNbr.BATCH_NAME);
-		Date predate = sysinfo.getPredate();
-		Date nowdate = sysinfo.getNowdate();
-		Date nextdate = sysinfo.getNextdate();
-		log.info("当前系统日期："+sysinfo.toString());
-		sysinfo.setPredate(DateUtil.addDate(predate, 0, 0, 1, 0, 0, 0, 0));
-		sysinfo.setNowdate(DateUtil.addDate(nowdate, 0, 0, 1, 0, 0, 0, 0));
-		sysinfo.setNextdate(DateUtil.addDate(nextdate, 0, 0, 1, 0, 0, 0, 0));
-		sysinfoMapper.updateByPrimaryKeySelective(sysinfo);
-		log.info("更新成功,系统日期"+sysinfo.toString());
+		SysInfo sysInfo = sysInfoMapper.selectByPrimaryKey(SysNbr.BATCH_NAME);
+		Date predate = sysInfo.getPreDate();
+		Date nowdate = sysInfo.getNowDate();
+		Date nextdate = sysInfo.getNextDate();
+		log.info("当前系统日期："+sysInfo.toString());
+		sysInfo.setPreDate(DateUtil.addDate(predate, 0, 0, 1, 0, 0, 0, 0));
+		sysInfo.setNowDate(DateUtil.addDate(nowdate, 0, 0, 1, 0, 0, 0, 0));
+		sysInfo.setNextDate(DateUtil.addDate(nextdate, 0, 0, 1, 0, 0, 0, 0));
+		sysInfoMapper.updateByPrimaryKeySelective(sysInfo);
+		log.info("更新成功,系统日期"+sysInfo.toString());
 		return RepeatStatus.FINISHED;
 	}
 

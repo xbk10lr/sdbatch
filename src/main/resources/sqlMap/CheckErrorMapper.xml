@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sd.dao.mapper.CheckErrorMapper" >
+  <resultMap id="BaseResultMap" type="com.sd.dto.generate.CheckError" >
+    <id column="ERROR_NBR" property="errorNbr" jdbcType="VARCHAR" />
+    <result column="ERROR_TYP" property="errorTyp" jdbcType="VARCHAR" />
+    <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR" />
+    <result column="PLAT_SEQ_NBR" property="platSeqNbr" jdbcType="VARCHAR" />
+    <result column="ERROR_STATUS" property="errorStatus" jdbcType="VARCHAR" />
+    <result column="TRANS_AMT" property="transAmt" jdbcType="DECIMAL" />
+    <result column="CLEAR_DATE" property="clearDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ERROR_NBR, ERROR_TYP, ERROR_DESC, PLAT_SEQ_NBR, ERROR_STATUS, TRANS_AMT, CLEAR_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.dto.generate.CheckErrorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CHECK_ERROR
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CHECK_ERROR
+    where ERROR_NBR = #{errorNbr,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CHECK_ERROR
+    where ERROR_NBR = #{errorNbr,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sd.dto.generate.CheckErrorExample" >
+    delete from CHECK_ERROR
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sd.dto.generate.CheckError" >
+    insert into CHECK_ERROR (ERROR_NBR, ERROR_TYP, ERROR_DESC, 
+      PLAT_SEQ_NBR, ERROR_STATUS, TRANS_AMT, 
+      CLEAR_DATE)
+    values (#{errorNbr,jdbcType=VARCHAR}, #{errorTyp,jdbcType=VARCHAR}, #{errorDesc,jdbcType=VARCHAR}, 
+      #{platSeqNbr,jdbcType=VARCHAR}, #{errorStatus,jdbcType=VARCHAR}, #{transAmt,jdbcType=DECIMAL}, 
+      #{clearDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sd.dto.generate.CheckError" >
+    insert into CHECK_ERROR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="errorNbr != null" >
+        ERROR_NBR,
+      </if>
+      <if test="errorTyp != null" >
+        ERROR_TYP,
+      </if>
+      <if test="errorDesc != null" >
+        ERROR_DESC,
+      </if>
+      <if test="platSeqNbr != null" >
+        PLAT_SEQ_NBR,
+      </if>
+      <if test="errorStatus != null" >
+        ERROR_STATUS,
+      </if>
+      <if test="transAmt != null" >
+        TRANS_AMT,
+      </if>
+      <if test="clearDate != null" >
+        CLEAR_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="errorNbr != null" >
+        #{errorNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="errorTyp != null" >
+        #{errorTyp,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDesc != null" >
+        #{errorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="platSeqNbr != null" >
+        #{platSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="errorStatus != null" >
+        #{errorStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmt != null" >
+        #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="clearDate != null" >
+        #{clearDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sd.dto.generate.CheckErrorExample" resultType="java.lang.Integer" >
+    select count(*) from CHECK_ERROR
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CHECK_ERROR
+    <set >
+      <if test="record.errorNbr != null" >
+        ERROR_NBR = #{record.errorNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorTyp != null" >
+        ERROR_TYP = #{record.errorTyp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorDesc != null" >
+        ERROR_DESC = #{record.errorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platSeqNbr != null" >
+        PLAT_SEQ_NBR = #{record.platSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorStatus != null" >
+        ERROR_STATUS = #{record.errorStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transAmt != null" >
+        TRANS_AMT = #{record.transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clearDate != null" >
+        CLEAR_DATE = #{record.clearDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CHECK_ERROR
+    set ERROR_NBR = #{record.errorNbr,jdbcType=VARCHAR},
+      ERROR_TYP = #{record.errorTyp,jdbcType=VARCHAR},
+      ERROR_DESC = #{record.errorDesc,jdbcType=VARCHAR},
+      PLAT_SEQ_NBR = #{record.platSeqNbr,jdbcType=VARCHAR},
+      ERROR_STATUS = #{record.errorStatus,jdbcType=VARCHAR},
+      TRANS_AMT = #{record.transAmt,jdbcType=DECIMAL},
+      CLEAR_DATE = #{record.clearDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.CheckError" >
+    update CHECK_ERROR
+    <set >
+      <if test="errorTyp != null" >
+        ERROR_TYP = #{errorTyp,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDesc != null" >
+        ERROR_DESC = #{errorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="platSeqNbr != null" >
+        PLAT_SEQ_NBR = #{platSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="errorStatus != null" >
+        ERROR_STATUS = #{errorStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmt != null" >
+        TRANS_AMT = #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="clearDate != null" >
+        CLEAR_DATE = #{clearDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ERROR_NBR = #{errorNbr,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.CheckError" >
+    update CHECK_ERROR
+    set ERROR_TYP = #{errorTyp,jdbcType=VARCHAR},
+      ERROR_DESC = #{errorDesc,jdbcType=VARCHAR},
+      PLAT_SEQ_NBR = #{platSeqNbr,jdbcType=VARCHAR},
+      ERROR_STATUS = #{errorStatus,jdbcType=VARCHAR},
+      TRANS_AMT = #{transAmt,jdbcType=DECIMAL},
+      CLEAR_DATE = #{clearDate,jdbcType=DATE}
+    where ERROR_NBR = #{errorNbr,jdbcType=VARCHAR}
+  </update>
+</mapper>

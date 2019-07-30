@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sd.dao.mapper.ChannelOrderHistMapper" >
+  <resultMap id="BaseResultMap" type="com.sd.dto.generate.ChannelOrderHist" >
+    <id column="ORDER_SEQ_NBR" property="orderSeqNbr" jdbcType="VARCHAR" />
+    <id column="TRANS_DATE" property="transDate" jdbcType="DATE" />
+    <result column="PAYER_NAME" property="payerName" jdbcType="VARCHAR" />
+    <result column="TRANS_AMT" property="transAmt" jdbcType="DECIMAL" />
+    <result column="CHANNEL_FEE_AMT" property="channelFeeAmt" jdbcType="DECIMAL" />
+    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <result column="PLAT_SEQ_NBR" property="platSeqNbr" jdbcType="VARCHAR" />
+    <result column="DOWN_SEQ_NBR" property="downSeqNbr" jdbcType="VARCHAR" />
+    <result column="RETURN_CODE" property="returnCode" jdbcType="VARCHAR" />
+    <result column="RETURN_MSG" property="returnMsg" jdbcType="VARCHAR" />
+    <result column="MER_NO" property="merNo" jdbcType="VARCHAR" />
+    <result column="TRANS_TIME" property="transTime" jdbcType="DATE" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="DATE" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="RESP_MSG" property="respMsg" jdbcType="VARCHAR" />
+    <result column="RESP_CODE" property="respCode" jdbcType="VARCHAR" />
+    <result column="CRT_DATE_TIME" property="crtDateTime" jdbcType="TIMESTAMP" />
+    <result column="DATE_LASTMAINT" property="dateLastmaint" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
+    PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, RETURN_MSG, MER_NO, TRANS_TIME, CHECK_DATE, 
+    CHECK_STATUS, ORDER_STATUS, RESP_MSG, RESP_CODE, CRT_DATE_TIME, DATE_LASTMAINT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.dto.generate.ChannelOrderHistExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CHANNEL_ORDER_HIST
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from CHANNEL_ORDER_HIST
+    where ORDER_SEQ_NBR = #{orderSeqNbr,jdbcType=VARCHAR}
+      and TRANS_DATE = #{transDate,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from CHANNEL_ORDER_HIST
+    where ORDER_SEQ_NBR = #{orderSeqNbr,jdbcType=VARCHAR}
+      and TRANS_DATE = #{transDate,jdbcType=DATE}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sd.dto.generate.ChannelOrderHistExample" >
+    delete from CHANNEL_ORDER_HIST
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sd.dto.generate.ChannelOrderHist" >
+    insert into CHANNEL_ORDER_HIST (ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, 
+      TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
+      PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, 
+      RETURN_MSG, MER_NO, TRANS_TIME, 
+      CHECK_DATE, CHECK_STATUS, ORDER_STATUS, 
+      RESP_MSG, RESP_CODE, CRT_DATE_TIME, 
+      DATE_LASTMAINT)
+    values (#{orderSeqNbr,jdbcType=VARCHAR}, #{transDate,jdbcType=DATE}, #{payerName,jdbcType=VARCHAR}, 
+      #{transAmt,jdbcType=DECIMAL}, #{channelFeeAmt,jdbcType=DECIMAL}, #{channelCode,jdbcType=VARCHAR}, 
+      #{platSeqNbr,jdbcType=VARCHAR}, #{downSeqNbr,jdbcType=VARCHAR}, #{returnCode,jdbcType=VARCHAR}, 
+      #{returnMsg,jdbcType=VARCHAR}, #{merNo,jdbcType=VARCHAR}, #{transTime,jdbcType=DATE}, 
+      #{checkDate,jdbcType=DATE}, #{checkStatus,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{respMsg,jdbcType=VARCHAR}, #{respCode,jdbcType=VARCHAR}, #{crtDateTime,jdbcType=TIMESTAMP}, 
+      #{dateLastmaint,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sd.dto.generate.ChannelOrderHist" >
+    insert into CHANNEL_ORDER_HIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderSeqNbr != null" >
+        ORDER_SEQ_NBR,
+      </if>
+      <if test="transDate != null" >
+        TRANS_DATE,
+      </if>
+      <if test="payerName != null" >
+        PAYER_NAME,
+      </if>
+      <if test="transAmt != null" >
+        TRANS_AMT,
+      </if>
+      <if test="channelFeeAmt != null" >
+        CHANNEL_FEE_AMT,
+      </if>
+      <if test="channelCode != null" >
+        CHANNEL_CODE,
+      </if>
+      <if test="platSeqNbr != null" >
+        PLAT_SEQ_NBR,
+      </if>
+      <if test="downSeqNbr != null" >
+        DOWN_SEQ_NBR,
+      </if>
+      <if test="returnCode != null" >
+        RETURN_CODE,
+      </if>
+      <if test="returnMsg != null" >
+        RETURN_MSG,
+      </if>
+      <if test="merNo != null" >
+        MER_NO,
+      </if>
+      <if test="transTime != null" >
+        TRANS_TIME,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS,
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS,
+      </if>
+      <if test="respMsg != null" >
+        RESP_MSG,
+      </if>
+      <if test="respCode != null" >
+        RESP_CODE,
+      </if>
+      <if test="crtDateTime != null" >
+        CRT_DATE_TIME,
+      </if>
+      <if test="dateLastmaint != null" >
+        DATE_LASTMAINT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderSeqNbr != null" >
+        #{orderSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        #{transDate,jdbcType=DATE},
+      </if>
+      <if test="payerName != null" >
+        #{payerName,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmt != null" >
+        #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="channelFeeAmt != null" >
+        #{channelFeeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="channelCode != null" >
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="platSeqNbr != null" >
+        #{platSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="downSeqNbr != null" >
+        #{downSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null" >
+        #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMsg != null" >
+        #{returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="merNo != null" >
+        #{merNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transTime != null" >
+        #{transTime,jdbcType=DATE},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="respMsg != null" >
+        #{respMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="respCode != null" >
+        #{respCode,jdbcType=VARCHAR},
+      </if>
+      <if test="crtDateTime != null" >
+        #{crtDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateLastmaint != null" >
+        #{dateLastmaint,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sd.dto.generate.ChannelOrderHistExample" resultType="java.lang.Integer" >
+    select count(*) from CHANNEL_ORDER_HIST
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CHANNEL_ORDER_HIST
+    <set >
+      <if test="record.orderSeqNbr != null" >
+        ORDER_SEQ_NBR = #{record.orderSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDate != null" >
+        TRANS_DATE = #{record.transDate,jdbcType=DATE},
+      </if>
+      <if test="record.payerName != null" >
+        PAYER_NAME = #{record.payerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transAmt != null" >
+        TRANS_AMT = #{record.transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.channelFeeAmt != null" >
+        CHANNEL_FEE_AMT = #{record.channelFeeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.channelCode != null" >
+        CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platSeqNbr != null" >
+        PLAT_SEQ_NBR = #{record.platSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downSeqNbr != null" >
+        DOWN_SEQ_NBR = #{record.downSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnCode != null" >
+        RETURN_CODE = #{record.returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnMsg != null" >
+        RETURN_MSG = #{record.returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merNo != null" >
+        MER_NO = #{record.merNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transTime != null" >
+        TRANS_TIME = #{record.transTime,jdbcType=DATE},
+      </if>
+      <if test="record.checkDate != null" >
+        CHECK_DATE = #{record.checkDate,jdbcType=DATE},
+      </if>
+      <if test="record.checkStatus != null" >
+        CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.respMsg != null" >
+        RESP_MSG = #{record.respMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.respCode != null" >
+        RESP_CODE = #{record.respCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crtDateTime != null" >
+        CRT_DATE_TIME = #{record.crtDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dateLastmaint != null" >
+        DATE_LASTMAINT = #{record.dateLastmaint,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CHANNEL_ORDER_HIST
+    set ORDER_SEQ_NBR = #{record.orderSeqNbr,jdbcType=VARCHAR},
+      TRANS_DATE = #{record.transDate,jdbcType=DATE},
+      PAYER_NAME = #{record.payerName,jdbcType=VARCHAR},
+      TRANS_AMT = #{record.transAmt,jdbcType=DECIMAL},
+      CHANNEL_FEE_AMT = #{record.channelFeeAmt,jdbcType=DECIMAL},
+      CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR},
+      PLAT_SEQ_NBR = #{record.platSeqNbr,jdbcType=VARCHAR},
+      DOWN_SEQ_NBR = #{record.downSeqNbr,jdbcType=VARCHAR},
+      RETURN_CODE = #{record.returnCode,jdbcType=VARCHAR},
+      RETURN_MSG = #{record.returnMsg,jdbcType=VARCHAR},
+      MER_NO = #{record.merNo,jdbcType=VARCHAR},
+      TRANS_TIME = #{record.transTime,jdbcType=DATE},
+      CHECK_DATE = #{record.checkDate,jdbcType=DATE},
+      CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      RESP_MSG = #{record.respMsg,jdbcType=VARCHAR},
+      RESP_CODE = #{record.respCode,jdbcType=VARCHAR},
+      CRT_DATE_TIME = #{record.crtDateTime,jdbcType=TIMESTAMP},
+      DATE_LASTMAINT = #{record.dateLastmaint,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.ChannelOrderHist" >
+    update CHANNEL_ORDER_HIST
+    <set >
+      <if test="payerName != null" >
+        PAYER_NAME = #{payerName,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmt != null" >
+        TRANS_AMT = #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="channelFeeAmt != null" >
+        CHANNEL_FEE_AMT = #{channelFeeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="channelCode != null" >
+        CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="platSeqNbr != null" >
+        PLAT_SEQ_NBR = #{platSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="downSeqNbr != null" >
+        DOWN_SEQ_NBR = #{downSeqNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null" >
+        RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMsg != null" >
+        RETURN_MSG = #{returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="merNo != null" >
+        MER_NO = #{merNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transTime != null" >
+        TRANS_TIME = #{transTime,jdbcType=DATE},
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="respMsg != null" >
+        RESP_MSG = #{respMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="respCode != null" >
+        RESP_CODE = #{respCode,jdbcType=VARCHAR},
+      </if>
+      <if test="crtDateTime != null" >
+        CRT_DATE_TIME = #{crtDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateLastmaint != null" >
+        DATE_LASTMAINT = #{dateLastmaint,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ORDER_SEQ_NBR = #{orderSeqNbr,jdbcType=VARCHAR}
+      and TRANS_DATE = #{transDate,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.ChannelOrderHist" >
+    update CHANNEL_ORDER_HIST
+    set PAYER_NAME = #{payerName,jdbcType=VARCHAR},
+      TRANS_AMT = #{transAmt,jdbcType=DECIMAL},
+      CHANNEL_FEE_AMT = #{channelFeeAmt,jdbcType=DECIMAL},
+      CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+      PLAT_SEQ_NBR = #{platSeqNbr,jdbcType=VARCHAR},
+      DOWN_SEQ_NBR = #{downSeqNbr,jdbcType=VARCHAR},
+      RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+      RETURN_MSG = #{returnMsg,jdbcType=VARCHAR},
+      MER_NO = #{merNo,jdbcType=VARCHAR},
+      TRANS_TIME = #{transTime,jdbcType=DATE},
+      CHECK_DATE = #{checkDate,jdbcType=DATE},
+      CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      RESP_MSG = #{respMsg,jdbcType=VARCHAR},
+      RESP_CODE = #{respCode,jdbcType=VARCHAR},
+      CRT_DATE_TIME = #{crtDateTime,jdbcType=TIMESTAMP},
+      DATE_LASTMAINT = #{dateLastmaint,jdbcType=TIMESTAMP}
+    where ORDER_SEQ_NBR = #{orderSeqNbr,jdbcType=VARCHAR}
+      and TRANS_DATE = #{transDate,jdbcType=DATE}
+  </update>
+</mapper>

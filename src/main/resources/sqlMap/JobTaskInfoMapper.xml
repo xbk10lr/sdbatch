@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sd.dao.mapper.JobTaskInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sd.dto.generate.JobTaskInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TASK_NAME" property="taskName" jdbcType="VARCHAR" />
+    <result column="TASK_EXPRESS" property="taskExpress" jdbcType="VARCHAR" />
+    <result column="TASK_PARAM" property="taskParam" jdbcType="VARCHAR" />
+    <result column="SYS_ID" property="sysId" jdbcType="VARCHAR" />
+    <result column="TASK_STATUS" property="taskStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TASK_NAME, TASK_EXPRESS, TASK_PARAM, SYS_ID, TASK_STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.dto.generate.JobTaskInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from JOB_TASK_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from JOB_TASK_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from JOB_TASK_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sd.dto.generate.JobTaskInfoExample" >
+    delete from JOB_TASK_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sd.dto.generate.JobTaskInfo" >
+    insert into JOB_TASK_INFO (ID, TASK_NAME, TASK_EXPRESS, 
+      TASK_PARAM, SYS_ID, TASK_STATUS
+      )
+    values (#{id,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR}, #{taskExpress,jdbcType=VARCHAR}, 
+      #{taskParam,jdbcType=VARCHAR}, #{sysId,jdbcType=VARCHAR}, #{taskStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sd.dto.generate.JobTaskInfo" >
+    insert into JOB_TASK_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="taskName != null" >
+        TASK_NAME,
+      </if>
+      <if test="taskExpress != null" >
+        TASK_EXPRESS,
+      </if>
+      <if test="taskParam != null" >
+        TASK_PARAM,
+      </if>
+      <if test="sysId != null" >
+        SYS_ID,
+      </if>
+      <if test="taskStatus != null" >
+        TASK_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskExpress != null" >
+        #{taskExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="taskParam != null" >
+        #{taskParam,jdbcType=VARCHAR},
+      </if>
+      <if test="sysId != null" >
+        #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null" >
+        #{taskStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sd.dto.generate.JobTaskInfoExample" resultType="java.lang.Integer" >
+    select count(*) from JOB_TASK_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update JOB_TASK_INFO
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskName != null" >
+        TASK_NAME = #{record.taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskExpress != null" >
+        TASK_EXPRESS = #{record.taskExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskParam != null" >
+        TASK_PARAM = #{record.taskParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysId != null" >
+        SYS_ID = #{record.sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskStatus != null" >
+        TASK_STATUS = #{record.taskStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update JOB_TASK_INFO
+    set ID = #{record.id,jdbcType=INTEGER},
+      TASK_NAME = #{record.taskName,jdbcType=VARCHAR},
+      TASK_EXPRESS = #{record.taskExpress,jdbcType=VARCHAR},
+      TASK_PARAM = #{record.taskParam,jdbcType=VARCHAR},
+      SYS_ID = #{record.sysId,jdbcType=VARCHAR},
+      TASK_STATUS = #{record.taskStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.JobTaskInfo" >
+    update JOB_TASK_INFO
+    <set >
+      <if test="taskName != null" >
+        TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskExpress != null" >
+        TASK_EXPRESS = #{taskExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="taskParam != null" >
+        TASK_PARAM = #{taskParam,jdbcType=VARCHAR},
+      </if>
+      <if test="sysId != null" >
+        SYS_ID = #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null" >
+        TASK_STATUS = #{taskStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.JobTaskInfo" >
+    update JOB_TASK_INFO
+    set TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      TASK_EXPRESS = #{taskExpress,jdbcType=VARCHAR},
+      TASK_PARAM = #{taskParam,jdbcType=VARCHAR},
+      SYS_ID = #{sysId,jdbcType=VARCHAR},
+      TASK_STATUS = #{taskStatus,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
