@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sd.dao.mapper.ChannelMerCheckMapper" >
-  <resultMap id="BaseResultMap" type="com.sd.dto.generate.ChannelMerCheck" >
+<mapper namespace="com.sd.batch.mapper.ChannelMerCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.sd.batch.dto.generate.ChannelMerCheck" >
     <id column="ORDER_SEQ_NBR" property="orderSeqNbr" jdbcType="VARCHAR" />
     <id column="TRANS_DATE" property="transDate" jdbcType="DATE" />
     <result column="PAYER_NAME" property="payerName" jdbcType="VARCHAR" />
@@ -83,7 +83,7 @@
     PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, RETURN_MSG, MER_NO, TRANS_TIME, CHECK_DATE, 
     CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.dto.generate.ChannelMerCheckExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.batch.dto.generate.ChannelMerCheckExample" >
     select
     <if test="distinct" >
       distinct
@@ -109,13 +109,13 @@
     where ORDER_SEQ_NBR = #{orderSeqNbr,jdbcType=VARCHAR}
       and TRANS_DATE = #{transDate,jdbcType=DATE}
   </delete>
-  <delete id="deleteByExample" parameterType="com.sd.dto.generate.ChannelMerCheckExample" >
+  <delete id="deleteByExample" parameterType="com.sd.batch.dto.generate.ChannelMerCheckExample" >
     delete from CHANNEL_MER_CHECK
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sd.dto.generate.ChannelMerCheck" >
+  <insert id="insert" parameterType="com.sd.batch.dto.generate.ChannelMerCheck" >
     insert into CHANNEL_MER_CHECK (ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, 
       TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
       PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, 
@@ -129,7 +129,7 @@
       #{checkDate,jdbcType=DATE}, #{checkStatus,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
       #{crtDateTime,jdbcType=TIMESTAMP}, #{dateLastmaint,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.sd.dto.generate.ChannelMerCheck" >
+  <insert id="insertSelective" parameterType="com.sd.batch.dto.generate.ChannelMerCheck" >
     insert into CHANNEL_MER_CHECK
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderSeqNbr != null" >
@@ -238,7 +238,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sd.dto.generate.ChannelMerCheckExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.sd.batch.dto.generate.ChannelMerCheckExample" resultType="java.lang.Integer" >
     select count(*) from CHANNEL_MER_CHECK
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -326,7 +326,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.ChannelMerCheck" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.batch.dto.generate.ChannelMerCheck" >
     update CHANNEL_MER_CHECK
     <set >
       <if test="payerName != null" >
@@ -378,7 +378,7 @@
     where ORDER_SEQ_NBR = #{orderSeqNbr,jdbcType=VARCHAR}
       and TRANS_DATE = #{transDate,jdbcType=DATE}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.ChannelMerCheck" >
+  <update id="updateByPrimaryKey" parameterType="com.sd.batch.dto.generate.ChannelMerCheck" >
     update CHANNEL_MER_CHECK
     set PAYER_NAME = #{payerName,jdbcType=VARCHAR},
       TRANS_AMT = #{transAmt,jdbcType=DECIMAL},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sd.dao.mapper.CheckErrorMapper" >
-  <resultMap id="BaseResultMap" type="com.sd.dto.generate.CheckError" >
+<mapper namespace="com.sd.batch.mapper.CheckErrorMapper" >
+  <resultMap id="BaseResultMap" type="com.sd.batch.dto.generate.CheckError" >
     <id column="ERROR_NBR" property="errorNbr" jdbcType="VARCHAR" />
     <result column="ERROR_TYP" property="errorTyp" jdbcType="VARCHAR" />
     <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     ERROR_NBR, ERROR_TYP, ERROR_DESC, PLAT_SEQ_NBR, ERROR_STATUS, TRANS_AMT, CLEAR_DATE
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.dto.generate.CheckErrorExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.batch.dto.generate.CheckErrorExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from CHECK_ERROR
     where ERROR_NBR = #{errorNbr,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.sd.dto.generate.CheckErrorExample" >
+  <delete id="deleteByExample" parameterType="com.sd.batch.dto.generate.CheckErrorExample" >
     delete from CHECK_ERROR
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sd.dto.generate.CheckError" >
+  <insert id="insert" parameterType="com.sd.batch.dto.generate.CheckError" >
     insert into CHECK_ERROR (ERROR_NBR, ERROR_TYP, ERROR_DESC, 
       PLAT_SEQ_NBR, ERROR_STATUS, TRANS_AMT, 
       CLEAR_DATE)
@@ -109,7 +109,7 @@
       #{platSeqNbr,jdbcType=VARCHAR}, #{errorStatus,jdbcType=VARCHAR}, #{transAmt,jdbcType=DECIMAL}, 
       #{clearDate,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" parameterType="com.sd.dto.generate.CheckError" >
+  <insert id="insertSelective" parameterType="com.sd.batch.dto.generate.CheckError" >
     insert into CHECK_ERROR
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="errorNbr != null" >
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sd.dto.generate.CheckErrorExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.sd.batch.dto.generate.CheckErrorExample" resultType="java.lang.Integer" >
     select count(*) from CHECK_ERROR
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.CheckError" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.batch.dto.generate.CheckError" >
     update CHECK_ERROR
     <set >
       <if test="errorTyp != null" >
@@ -230,7 +230,7 @@
     </set>
     where ERROR_NBR = #{errorNbr,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.CheckError" >
+  <update id="updateByPrimaryKey" parameterType="com.sd.batch.dto.generate.CheckError" >
     update CHECK_ERROR
     set ERROR_TYP = #{errorTyp,jdbcType=VARCHAR},
       ERROR_DESC = #{errorDesc,jdbcType=VARCHAR},

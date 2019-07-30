@@ -27,7 +27,7 @@
 
       <!-- targetProject:生成Entity类的路径 -->
       <javaModelGenerator targetProject=".\src\main\java"
-         targetPackage="com.sd.dto.generate">
+         targetPackage="com.sd.batch.dto.generate">
          <!-- enableSubPackages:是否让schema作为包的后缀 -->
          <property name="enableSubPackages" value="false" />
          <!-- 从数据库返回的值被清理前后的空格 -->
@@ -43,7 +43,7 @@
 
       <!-- targetPackage：Mapper接口生成的位置 -->
       <javaClientGenerator type="XMLMAPPER"
-         targetProject=".\src\main\java" targetPackage="com.sd.dao.mapper">
+         targetProject=".\src\main\java" targetPackage="com.sd.batch.mapper">
          <!-- enableSubPackages:是否让schema作为包的后缀 -->
          <property name="enableSubPackages" value="false" />
       </javaClientGenerator>
@@ -63,5 +63,23 @@
       <table tableName="MER_CHECK_FILE_INFO" domainObjectName="MerCheckFileInfo"/>
       <table tableName="JOB_TASK_INFO" domainObjectName="JobTaskInfo"/>
 
+	<table tableName="BATCH_JOB_INSTANCE">
+    </table>
+    <table tableName="BATCH_JOB_EXECUTION">
+    </table>
+    <table tableName="BATCH_JOB_EXECUTION_PARAMS">
+    </table>
+    <table tableName="BATCH_STEP_EXECUTION">
+    </table>
+    <table tableName="BATCH_STEP_EXECUTION_CONTEXT">
+    </table>
+    <table tableName="BATCH_JOB_EXECUTION_CONTEXT">
+    </table>
+    <table tableName="BATCH_STEP_EXECUTION_SEQ">
+    </table>
+    <table tableName="BATCH_JOB_EXECUTION_SEQ">
+    </table>
+    <table tableName="BATCH_JOB_SEQ">
+	</table>
    </context>
 </generatorConfiguration>

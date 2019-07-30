@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
-@MapperScan("com.sd.dao.mapper")
+@MapperScan("com.sd.batch.mapper")
 @SpringBootApplication
 @ServletComponentScan(basePackages = "com.sd.batch.listener")
 public class UppBatchApplication {

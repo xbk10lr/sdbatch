@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sd.dao.mapper.MerOrderHistMapper" >
-  <resultMap id="BaseResultMap" type="com.sd.dto.generate.MerOrderHist" >
+<mapper namespace="com.sd.batch.mapper.MerOrderHistMapper" >
+  <resultMap id="BaseResultMap" type="com.sd.batch.dto.generate.MerOrderHist" >
     <id column="PLAT_SEQ_NBR" property="platSeqNbr" jdbcType="VARCHAR" />
     <id column="TRANS_DATE" property="transDate" jdbcType="DATE" />
     <result column="PAYER_NAME" property="payerName" jdbcType="VARCHAR" />
@@ -78,7 +78,7 @@
     PLAT_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, MER_FEE_AMT, MER_SEQ_NBR, MER_NO, 
     TRANS_TIME, CHECK_DATE, CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.dto.generate.MerOrderHistExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.batch.dto.generate.MerOrderHistExample" >
     select
     <if test="distinct" >
       distinct
@@ -104,13 +104,13 @@
     where PLAT_SEQ_NBR = #{platSeqNbr,jdbcType=VARCHAR}
       and TRANS_DATE = #{transDate,jdbcType=DATE}
   </delete>
-  <delete id="deleteByExample" parameterType="com.sd.dto.generate.MerOrderHistExample" >
+  <delete id="deleteByExample" parameterType="com.sd.batch.dto.generate.MerOrderHistExample" >
     delete from MER_ORDER_HIST
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sd.dto.generate.MerOrderHist" >
+  <insert id="insert" parameterType="com.sd.batch.dto.generate.MerOrderHist" >
     insert into MER_ORDER_HIST (PLAT_SEQ_NBR, TRANS_DATE, PAYER_NAME, 
       TRANS_AMT, MER_FEE_AMT, MER_SEQ_NBR, 
       MER_NO, TRANS_TIME, CHECK_DATE, 
@@ -122,7 +122,7 @@
       #{checkStatus,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, #{crtDateTime,jdbcType=TIMESTAMP}, 
       #{dateLastmaint,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.sd.dto.generate.MerOrderHist" >
+  <insert id="insertSelective" parameterType="com.sd.batch.dto.generate.MerOrderHist" >
     insert into MER_ORDER_HIST
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="platSeqNbr != null" >
@@ -207,7 +207,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sd.dto.generate.MerOrderHistExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.sd.batch.dto.generate.MerOrderHistExample" resultType="java.lang.Integer" >
     select count(*) from MER_ORDER_HIST
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -279,7 +279,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.MerOrderHist" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.batch.dto.generate.MerOrderHist" >
     update MER_ORDER_HIST
     <set >
       <if test="payerName != null" >
@@ -319,7 +319,7 @@
     where PLAT_SEQ_NBR = #{platSeqNbr,jdbcType=VARCHAR}
       and TRANS_DATE = #{transDate,jdbcType=DATE}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.MerOrderHist" >
+  <update id="updateByPrimaryKey" parameterType="com.sd.batch.dto.generate.MerOrderHist" >
     update MER_ORDER_HIST
     set PAYER_NAME = #{payerName,jdbcType=VARCHAR},
       TRANS_AMT = #{transAmt,jdbcType=DECIMAL},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sd.dao.mapper.SysInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.sd.dto.generate.SysInfo" >
+<mapper namespace="com.sd.batch.mapper.SysInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sd.batch.dto.generate.SysInfo" >
     <id column="SYS_NBR" property="sysNbr" jdbcType="VARCHAR" />
     <result column="PRE_DATE" property="preDate" jdbcType="DATE" />
     <result column="NOW_DATE" property="nowDate" jdbcType="DATE" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     SYS_NBR, PRE_DATE, NOW_DATE, NEXT_DATE
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.dto.generate.SysInfoExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.batch.dto.generate.SysInfoExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,19 +92,19 @@
     delete from SYS_INFO
     where SYS_NBR = #{sysNbr,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.sd.dto.generate.SysInfoExample" >
+  <delete id="deleteByExample" parameterType="com.sd.batch.dto.generate.SysInfoExample" >
     delete from SYS_INFO
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sd.dto.generate.SysInfo" >
+  <insert id="insert" parameterType="com.sd.batch.dto.generate.SysInfo" >
     insert into SYS_INFO (SYS_NBR, PRE_DATE, NOW_DATE, 
       NEXT_DATE)
     values (#{sysNbr,jdbcType=VARCHAR}, #{preDate,jdbcType=DATE}, #{nowDate,jdbcType=DATE}, 
       #{nextDate,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" parameterType="com.sd.dto.generate.SysInfo" >
+  <insert id="insertSelective" parameterType="com.sd.batch.dto.generate.SysInfo" >
     insert into SYS_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="sysNbr != null" >
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sd.dto.generate.SysInfoExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.sd.batch.dto.generate.SysInfoExample" resultType="java.lang.Integer" >
     select count(*) from SYS_INFO
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sd.dto.generate.SysInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.sd.batch.dto.generate.SysInfo" >
     update SYS_INFO
     <set >
       <if test="preDate != null" >
@@ -186,7 +186,7 @@
     </set>
     where SYS_NBR = #{sysNbr,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sd.dto.generate.SysInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.sd.batch.dto.generate.SysInfo" >
     update SYS_INFO
     set PRE_DATE = #{preDate,jdbcType=DATE},
       NOW_DATE = #{nowDate,jdbcType=DATE},

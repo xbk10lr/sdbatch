@@ -9,10 +9,10 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sd.constants.SysNbr;
-import com.sd.dao.mapper.SysInfoMapper;
-import com.sd.dto.generate.SysInfo;
-import com.sd.utils.DateUtil;
+import com.sd.batch.base.constants.SysNbr;
+import com.sd.batch.base.utils.DateUtil;
+import com.sd.batch.dto.generate.SysInfo;
+import com.sd.batch.mapper.SysInfoMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
