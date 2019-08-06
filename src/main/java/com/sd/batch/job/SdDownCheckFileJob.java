@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.extern.slf4j.Slf4j;
 
-//下周对账文件队列
+//下载对账文件队列
 @Slf4j
 @Configuration
 @EnableBatchProcessing
