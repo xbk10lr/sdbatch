@@ -1,4 +1,4 @@
-package com.sd.batch.step;
+package com.sd.batch.step.cutoff;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -7,14 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.sd.batch.listener.StepCommonListener;
-import com.sd.batch.tasklet.Test3Tasklet;
+import com.sd.batch.tasklet.cutoff.CutOffTasklet;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class TestStep3 {
-
+public class SdCutOffStep {
+	
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 	
@@ -22,14 +22,15 @@ public class TestStep3 {
 	private StepCommonListener stepCommonListener;
 	
 	@Autowired
-	private Test3Tasklet test3Tasklet;
+	private CutOffTasklet cutOffTasklet;
 	
 	@Bean
-	public Step test3Step() {
-		log.info("测试步点3启动");
-		return stepBuilderFactory.get("test3")
-				.tasklet(test3Tasklet)
+	public Step cutOffStep() {
+		log.info("cut off step start");
+		return stepBuilderFactory.get("cutOff")
+				.tasklet(cutOffTasklet)
 				.listener(stepCommonListener)
 				.build();
 	}
+	
 }

@@ -1,4 +1,4 @@
-package com.sd.batch.tasklet;
+package com.sd.batch.tasklet.cutoff;
 
 import java.util.Date;
 
