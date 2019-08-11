@@ -20,7 +20,11 @@ public class StepCommonListener implements StepExecutionListener {
 		endTime = System.currentTimeMillis();
 		log.info("<<<<<<<<<<<<<<<<<<<<Step  end");
 		log.info("<<<<<<<<<<<<<<<<<<<<耗时："+((endTime - startTime) + "ms"));
+		if(arg0.getExitStatus()!=null){
+			return arg0.getExitStatus();
+		} else{
 		return ExitStatus.COMPLETED;
+		}
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.sd.batch.mapper;
 
 import com.sd.batch.dto.generate.CheckChannelReg;
 import com.sd.batch.dto.generate.CheckChannelRegExample;
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +11,7 @@ public interface CheckChannelRegMapper {
 
     int deleteByExample(CheckChannelRegExample example);
 
-    int deleteByPrimaryKey(String checkNbr);
+    int deleteByPrimaryKey(@Param("channelCode") String channelCode, @Param("checkDate") Date checkDate);
 
     int insert(CheckChannelReg record);
 
@@ -18,7 +19,7 @@ public interface CheckChannelRegMapper {
 
     List<CheckChannelReg> selectByExample(CheckChannelRegExample example);
 
-    CheckChannelReg selectByPrimaryKey(String checkNbr);
+    CheckChannelReg selectByPrimaryKey(@Param("channelCode") String channelCode, @Param("checkDate") Date checkDate);
 
     int updateByExampleSelective(@Param("record") CheckChannelReg record, @Param("example") CheckChannelRegExample example);
 

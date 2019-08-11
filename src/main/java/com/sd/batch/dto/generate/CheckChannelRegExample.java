@@ -132,76 +132,6 @@ public class CheckChannelRegExample {
             addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
-        public Criteria andCheckNbrIsNull() {
-            addCriterion("CHECK_NBR is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrIsNotNull() {
-            addCriterion("CHECK_NBR is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrEqualTo(String value) {
-            addCriterion("CHECK_NBR =", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrNotEqualTo(String value) {
-            addCriterion("CHECK_NBR <>", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrGreaterThan(String value) {
-            addCriterion("CHECK_NBR >", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrGreaterThanOrEqualTo(String value) {
-            addCriterion("CHECK_NBR >=", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrLessThan(String value) {
-            addCriterion("CHECK_NBR <", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrLessThanOrEqualTo(String value) {
-            addCriterion("CHECK_NBR <=", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrLike(String value) {
-            addCriterion("CHECK_NBR like", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrNotLike(String value) {
-            addCriterion("CHECK_NBR not like", value, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrIn(List<String> values) {
-            addCriterion("CHECK_NBR in", values, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrNotIn(List<String> values) {
-            addCriterion("CHECK_NBR not in", values, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrBetween(String value1, String value2) {
-            addCriterion("CHECK_NBR between", value1, value2, "checkNbr");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckNbrNotBetween(String value1, String value2) {
-            addCriterion("CHECK_NBR not between", value1, value2, "checkNbr");
-            return (Criteria) this;
-        }
-
         public Criteria andChannelCodeIsNull() {
             addCriterion("CHANNEL_CODE is null");
             return (Criteria) this;
@@ -269,6 +199,136 @@ public class CheckChannelRegExample {
 
         public Criteria andChannelCodeNotBetween(String value1, String value2) {
             addCriterion("CHANNEL_CODE not between", value1, value2, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateIsNull() {
+            addCriterion("CHECK_DATE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateIsNotNull() {
+            addCriterion("CHECK_DATE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateEqualTo(Date value) {
+            addCriterionForJDBCDate("CHECK_DATE =", value, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("CHECK_DATE <>", value, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("CHECK_DATE >", value, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("CHECK_DATE >=", value, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateLessThan(Date value) {
+            addCriterionForJDBCDate("CHECK_DATE <", value, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("CHECK_DATE <=", value, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateIn(List<Date> values) {
+            addCriterionForJDBCDate("CHECK_DATE in", values, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("CHECK_DATE not in", values, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("CHECK_DATE between", value1, value2, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("CHECK_DATE not between", value1, value2, "checkDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrIsNull() {
+            addCriterion("CHECK_NBR is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrIsNotNull() {
+            addCriterion("CHECK_NBR is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrEqualTo(String value) {
+            addCriterion("CHECK_NBR =", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrNotEqualTo(String value) {
+            addCriterion("CHECK_NBR <>", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrGreaterThan(String value) {
+            addCriterion("CHECK_NBR >", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrGreaterThanOrEqualTo(String value) {
+            addCriterion("CHECK_NBR >=", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrLessThan(String value) {
+            addCriterion("CHECK_NBR <", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrLessThanOrEqualTo(String value) {
+            addCriterion("CHECK_NBR <=", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrLike(String value) {
+            addCriterion("CHECK_NBR like", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrNotLike(String value) {
+            addCriterion("CHECK_NBR not like", value, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrIn(List<String> values) {
+            addCriterion("CHECK_NBR in", values, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrNotIn(List<String> values) {
+            addCriterion("CHECK_NBR not in", values, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrBetween(String value1, String value2) {
+            addCriterion("CHECK_NBR between", value1, value2, "checkNbr");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNbrNotBetween(String value1, String value2) {
+            addCriterion("CHECK_NBR not between", value1, value2, "checkNbr");
             return (Criteria) this;
         }
 
@@ -409,66 +469,6 @@ public class CheckChannelRegExample {
 
         public Criteria andCheckFlagNotBetween(String value1, String value2) {
             addCriterion("CHECK_FLAG not between", value1, value2, "checkFlag");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateIsNull() {
-            addCriterion("CHECK_DATE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateIsNotNull() {
-            addCriterion("CHECK_DATE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateEqualTo(Date value) {
-            addCriterionForJDBCDate("CHECK_DATE =", value, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("CHECK_DATE <>", value, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("CHECK_DATE >", value, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("CHECK_DATE >=", value, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateLessThan(Date value) {
-            addCriterionForJDBCDate("CHECK_DATE <", value, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("CHECK_DATE <=", value, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateIn(List<Date> values) {
-            addCriterionForJDBCDate("CHECK_DATE in", values, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("CHECK_DATE not in", values, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("CHECK_DATE between", value1, value2, "checkDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("CHECK_DATE not between", value1, value2, "checkDate");
             return (Criteria) this;
         }
     }

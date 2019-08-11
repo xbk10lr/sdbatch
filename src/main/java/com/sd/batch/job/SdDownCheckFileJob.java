@@ -22,6 +22,14 @@ public class SdDownCheckFileJob {
 	private JobBuilderFactory jobBuilderFactory;
 	
 	@Autowired
+	@Qualifier("initCheckFileStep")
+	private Step initCheckFileStep;
+	
+	@Autowired
+	@Qualifier("applyCheckFileStep")
+	private Step applyCheckFileStep;
+	
+	@Autowired
 	@Qualifier("downCheckFileStep")
 	private Step downCheckFileStep;
 	
@@ -30,7 +38,7 @@ public class SdDownCheckFileJob {
 		log.info("down check file job start");
 		return jobBuilderFactory.get("downCheckFileJob")
 				.incrementer(new RunIdIncrementer())
-				.start(downCheckFileStep)
+				.start(initCheckFileStep).next(applyCheckFileStep).next(downCheckFileStep)
 				.build();
 	}
 }

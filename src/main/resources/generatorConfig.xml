@@ -82,7 +82,7 @@
     <table tableName="BATCH_JOB_SEQ">
 	</table> -->
 	
-	<table tableName="DATA_DICT">
+	<table tableName="CHECK_CHANNEL_REG">
 	</table>
    </context>
 </generatorConfiguration>

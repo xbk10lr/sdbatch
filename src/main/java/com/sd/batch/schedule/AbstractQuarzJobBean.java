@@ -13,15 +13,17 @@ import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteExcep
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import com.sd.batch.base.constants.JobParameteresKey;
+import com.sd.batch.base.constants.SysNbr;
 import com.sd.batch.base.utils.DateUtil;
 import com.sd.batch.base.utils.SpringUtils;
+import com.sd.batch.mapper.SysInfoMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public abstract class AbstractQuarzJobBean extends QuartzJobBean {
-	
-	
+
 	protected abstract String getJobName();
 
 	@Override
@@ -29,19 +31,22 @@ public abstract class AbstractQuarzJobBean extends QuartzJobBean {
 		try {
 			Job job = (Job) SpringUtils.getBeanObj(getJobName());
 			JobLauncher jobLauncher = (JobLauncher) SpringUtils.getBeanObj("jobLauncher");
+			SysInfoMapper sysInfoMapper = SpringUtils.getBean(SysInfoMapper.class);
 			JobParameters jobParameters = new JobParametersBuilder()
-				.addString("date", DateTime.now().minusDays(1).toString(DateUtil.DATE_FORMAT_YYYY_MM_DD)).toJobParameters();
+					.addString(JobParameteresKey.NOW_DATE_STR, DateTime.now().minusDays(1).toString(DateUtil.DATE_FORMAT_YYYY_MM_DD))
+					.addDate(JobParameteresKey.CHECK_DATE, sysInfoMapper.selectByPrimaryKey(SysNbr.BATCH_NAME).getPreDate())
+					.toJobParameters();
 			jobLauncher.run(job, jobParameters);
 		} catch (JobExecutionAlreadyRunningException e) {
-			log.error("JobExecutionAlreadyRunningException error:{}",e);
+			log.error("JobExecutionAlreadyRunningException error:{}", e);
 		} catch (JobRestartException e) {
-			log.error("JobRestartException error:{}",e);
+			log.error("JobRestartException error:{}", e);
 		} catch (JobInstanceAlreadyCompleteException e) {
-			log.error("JobInstanceAlreadyCompleteException error:{}",e);
+			log.error("JobInstanceAlreadyCompleteException error:{}", e);
 		} catch (JobParametersInvalidException e) {
-			log.error("JobParametersInvalidException error:{}",e);
+			log.error("JobParametersInvalidException error:{}", e);
 		} catch (Exception e) {
-			log.error("exception:{}",e);
+			log.error("exception:{}", e);
 		}
 
 	}
