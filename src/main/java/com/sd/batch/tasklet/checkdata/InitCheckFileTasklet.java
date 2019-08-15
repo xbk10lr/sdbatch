@@ -12,12 +12,9 @@ import org.springframework.stereotype.Component;
 import com.sd.batch.base.constants.ChannelCode;
 import com.sd.batch.base.constants.CheckFlag;
 import com.sd.batch.base.constants.JobParameteresKey;
-import com.sd.batch.base.constants.SysNbr;
 import com.sd.batch.base.utils.DateUtil;
 import com.sd.batch.dto.generate.CheckChannelReg;
-import com.sd.batch.dto.generate.CheckChannelRegExample;
 import com.sd.batch.mapper.CheckChannelRegMapper;
-import com.sd.batch.mapper.SysInfoMapper;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkFiles>
+	<!-- 模拟下游对账文件模板 -->
+	<file id="mockCheckFile" skipBeginLine="true" encoding="utf-8" lineSeparator="|" skipEndLine="false">
+		<field name="shh" annotation="商户号"/>
+		<field name="sdptlsh" annotation="收单平台流水号"/>
+		<field name="xylsh" annotation="下游流水号"/>
+		<field name="jyje" annotation="交易金额"/>
+		<field name="sdptjyrq" annotation="收单平台交易日期"/>
+		<field name="xyjyrq" annotation="下游交易日期"/>
+		<field name="jyzt" annotation="交易状态"/>
+		<field name="bz" annotation="币种"/>
+	</file >
+
+</checkFiles>
