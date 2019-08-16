@@ -8,7 +8,6 @@
 		<field name="jyje" annotation="交易金额"/>
 		<field name="sdptjyrq" annotation="收单平台交易日期"/>
 		<field name="xyjyrq" annotation="下游交易日期"/>
-		<field name="jyzt" annotation="交易状态"/>
 		<field name="bz" annotation="币种"/>
 	</file >
 

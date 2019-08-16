@@ -9,10 +9,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sd.batch.dto.generate.DownOrder;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FileUtils {
+public abstract class BaseFileUtil {
 
     /**
      * @Title: fileParsing 
@@ -22,7 +24,7 @@ public class FileUtils {
      * @return List<Map<String,String>> 返回类型
      * @throws Exception 
      */
-    public  List<Map<String, String>> fileParsing(File file,String fileId) throws Exception  {
+    public  List<DownOrder> fileParsing(File file,String fileId) throws Exception  {
         if(file == null ){
             return null;
         }
@@ -37,7 +39,7 @@ public class FileUtils {
             	log.error("get file format error, wrong fileId");
             	throw new Exception("get file format error, wrong fileId");
             }
-            List<Map<String, String>> fileReadMaps = new ArrayList<Map<String,String>>();
+            List<DownOrder> fileReadMaps = new ArrayList<DownOrder>();
             while((alineString=bufferedReader.readLine())!=null){
             	if(fileFormat.getSkipBeginLine()){
             		//跳过首行
@@ -50,10 +52,12 @@ public class FileUtils {
             		for(int i=0;i<readArray.length;i++){
             			Map<String, String> fileReadMap = new LinkedHashMap<String, String>();
             			fileReadMap.put(fields.get(i), readArray[i]);        //Map第一个键存放接口号
-            			fileReadMaps.add(fileReadMap);
+            			DownOrder downOrder = parseMapToDownOrder(fileReadMap);
+            			fileReadMaps.add(downOrder);
             		}
             	} else {
             		log.error("Error of File Format!"); 
+            		throw new Exception("Error of File Format!");
             	}
             }
             return fileReadMaps;
@@ -76,4 +80,6 @@ public class FileUtils {
             }
         }
     }
+
+	protected abstract DownOrder parseMapToDownOrder(Map<String, String> map);
 }

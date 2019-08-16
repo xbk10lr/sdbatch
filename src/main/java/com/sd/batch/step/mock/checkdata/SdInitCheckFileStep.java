@@ -1,4 +1,4 @@
-package com.sd.batch.step.checkdata;
+package com.sd.batch.step.mock.checkdata;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.sd.batch.listener.StepCommonListener;
-import com.sd.batch.tasklet.checkdata.InitCheckFileTasklet;
+import com.sd.batch.tasklet.mock.checkdata.InitCheckFileTasklet;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.sd.batch.tasklet.checkdata;
+package com.sd.batch.tasklet.mock.checkdata;
 
 import java.util.Date;
 
@@ -29,9 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class ApplyCheckFileTasklet implements Tasklet{
-	
-	@Autowired
-	private SysInfoMapper sysInfoMapper;
 	
 	@Autowired
 	private DataDictUtils dataDictUtils;
