@@ -16,19 +16,13 @@ import com.sd.batch.base.constants.CheckFlag;
 import com.sd.batch.base.constants.DataDictConst;
 import com.sd.batch.base.constants.FileId;
 import com.sd.batch.base.constants.JobParameteresKey;
-import com.sd.batch.base.constants.SysNbr;
 import com.sd.batch.base.utils.DataDictUtils;
-import com.sd.batch.base.utils.DateUtil;
-import com.sd.batch.base.utils.StringUtil;
 import com.sd.batch.base.utils.file.MockFileUtil;
-import com.sd.batch.dto.common.ReqCheckFileApply;
-import com.sd.batch.dto.common.RespCheckFileApply;
 import com.sd.batch.dto.generate.CheckChannelReg;
 import com.sd.batch.dto.generate.CheckChannelRegExample;
 import com.sd.batch.dto.generate.DownOrder;
 import com.sd.batch.mapper.CheckChannelRegMapper;
-import com.sd.batch.mapper.SysInfoMapper;
-import com.sd.batch.service.CheckFileService;
+import com.sd.batch.mapper.extend.DownOrderExtendDao;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,6 +35,9 @@ public class ParseCheckFileTasklet implements Tasklet{
 	
 	@Autowired
 	private CheckChannelRegMapper checkChannelRegMapper;
+	
+	@Autowired
+	private DownOrderExtendDao downOrderExtendDao;
 	
 	@Override
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1) throws Exception {
@@ -55,12 +52,11 @@ public class ParseCheckFileTasklet implements Tasklet{
 			String fileName = checkChannelReg.getFileName();
 			List<DownOrder> fileParsing = mockFileUtil.fileParsing(new File(localFilePath+fileName), FileId.MOCK_FILE_ID);
 			//批量插入
-			
+			downOrderExtendDao.insertByBatch(fileParsing);
 			//更新文件状态为已解析
 			checkChannelReg.setCheckFlag(CheckFlag.ANALYSED);
 			checkChannelRegMapper.updateByPrimaryKeySelective(checkChannelReg);
 		}
-		
 		log.info("parse check file tasklet complete");
 		return RepeatStatus.FINISHED;
 	}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sd.batch.mapper.extend.DownOrderExtendMapper" >
+  <insert id="insertByBatch" parameterType="java.util.List" >
+    insert into DOWN_ORDER (ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, 
+      TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
+      PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, 
+      RETURN_MSG, MER_NO, TRANS_TIME, 
+      CHECK_DATE, CHECK_STATUS, ORDER_STATUS, 
+      CRT_DATE_TIME, DATE_LASTMAINT)
+    values
+    <foreach collection="list" item="downOrder" separator=",">
+	    (#{downOrder.orderSeqNbr,jdbcType=VARCHAR}, #{downOrder.transDate,jdbcType=DATE}, #{downOrder.payerName,jdbcType=VARCHAR}, 
+	      #{downOrder.transAmt,jdbcType=DECIMAL}, #{downOrder.channelFeeAmt,jdbcType=DECIMAL}, #{downOrder.channelCode,jdbcType=VARCHAR}, 
+	      #{downOrder.platSeqNbr,jdbcType=VARCHAR}, #{downOrder.downSeqNbr,jdbcType=VARCHAR}, #{downOrder.returnCode,jdbcType=VARCHAR}, 
+	      #{downOrder.returnMsg,jdbcType=VARCHAR}, #{downOrder.merNo,jdbcType=VARCHAR}, #{downOrder.transTime,jdbcType=DATE}, 
+	      #{downOrder.checkDate,jdbcType=DATE}, #{downOrder.checkStatus,jdbcType=VARCHAR}, #{downOrder.orderStatus,jdbcType=VARCHAR}, 
+	      #{downOrder.crtDateTime,jdbcType=TIMESTAMP}, #{downOrder.dateLastmaint,jdbcType=TIMESTAMP})
+    </foreach> 
+  </insert>
+</mapper>

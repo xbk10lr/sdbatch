@@ -38,9 +38,9 @@ public class SdCheckDataJob {
 	private Step cleanDataStep;
 	
 	@Bean
-	public Job downCheckFileJob() {
+	public Job checkDataJob() {
 		log.info("down check file job start");
-		return jobBuilderFactory.get("downCheckFileJob")
+		return jobBuilderFactory.get("checkDataJob")
 				.incrementer(new RunIdIncrementer())
 				.start(parseCheckFileStep).next(prepareCheckDataStep).next(checkDataStep).next(cleanDataStep)
 				.build();
