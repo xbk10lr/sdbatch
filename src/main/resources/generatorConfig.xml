@@ -82,7 +82,10 @@
     <table tableName="BATCH_JOB_SEQ">
 	</table> -->
 	
-	<table tableName="CHECK_CHANNEL_REG">
+	<table tableName="CHANNEL_ORDER_PRE_CHECK">
 	</table>
+	<table tableName="MER_ORDER_PRE_CHECK">
+	</table>
+	
    </context>
 </generatorConfiguration>

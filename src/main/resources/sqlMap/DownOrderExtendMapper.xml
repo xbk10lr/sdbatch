@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sd.batch.mapper.extend.DownOrderExtendMapper" >
+  <sql id="Base_Column_List" >
+     ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
+     PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, RETURN_MSG, MER_NO, TRANS_TIME, CHECK_DATE, 
+     CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
+  </sql>
   <insert id="insertByBatch" parameterType="java.util.List" >
-    insert into DOWN_ORDER (ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, 
-      TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
-      PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, 
-      RETURN_MSG, MER_NO, TRANS_TIME, 
-      CHECK_DATE, CHECK_STATUS, ORDER_STATUS, 
-      CRT_DATE_TIME, DATE_LASTMAINT)
+    insert into DOWN_ORDER (
+    <include refid="Base_Column_List" />
+    )
     values
     <foreach collection="list" item="downOrder" separator=",">
 	    (#{downOrder.orderSeqNbr,jdbcType=VARCHAR}, #{downOrder.transDate,jdbcType=DATE}, #{downOrder.payerName,jdbcType=VARCHAR}, 
