@@ -41,7 +41,7 @@ public abstract class BaseFileUtil {
             }
             List<DownOrder> fileReadMaps = new ArrayList<DownOrder>();
             while((alineString=bufferedReader.readLine())!=null){
-            	if(fileFormat.getSkipBeginLine()){
+            	if(fileFormat.isSkipBeginLine()){
             		//跳过首行
             		continue;
             	}

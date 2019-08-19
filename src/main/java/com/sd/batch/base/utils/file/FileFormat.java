@@ -29,7 +29,7 @@ public class FileFormat {
 		this.id = id;
 	}
 
-	public Boolean getSkipBeginLine() {
+	public Boolean isSkipBeginLine() {
 		return skipBeginLine;
 	}
 
@@ -53,7 +53,7 @@ public class FileFormat {
 		this.lineSeparator = lineSeparator;
 	}
 
-	public Boolean getSkipEndLine() {
+	public Boolean isSkipEndLine() {
 		return skipEndLine;
 	}
 
