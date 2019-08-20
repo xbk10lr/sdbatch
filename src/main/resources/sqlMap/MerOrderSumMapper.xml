@@ -5,7 +5,7 @@
     <id column="SETTLE_NBR" property="settleNbr" jdbcType="VARCHAR" />
     <result column="MER_NBR" property="merNbr" jdbcType="VARCHAR" />
     <result column="CLEAR_DATE" property="clearDate" jdbcType="DATE" />
-    <result column="CLEAR_TIME" property="clearTime" jdbcType="DATE" />
+    <result column="CLEAR_TIME" property="clearTime" jdbcType="TIMESTAMP" />
     <result column="TOTAL_AMT" property="totalAmt" jdbcType="DECIMAL" />
     <result column="TOTAL_COUNT" property="totalCount" jdbcType="INTEGER" />
     <result column="TOTAL_FEE_AMT" property="totalFeeAmt" jdbcType="DECIMAL" />
@@ -106,7 +106,7 @@
       CLEAR_TIME, TOTAL_AMT, TOTAL_COUNT, 
       TOTAL_FEE_AMT)
     values (#{settleNbr,jdbcType=VARCHAR}, #{merNbr,jdbcType=VARCHAR}, #{clearDate,jdbcType=DATE}, 
-      #{clearTime,jdbcType=DATE}, #{totalAmt,jdbcType=DECIMAL}, #{totalCount,jdbcType=INTEGER}, 
+      #{clearTime,jdbcType=TIMESTAMP}, #{totalAmt,jdbcType=DECIMAL}, #{totalCount,jdbcType=INTEGER}, 
       #{totalFeeAmt,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.sd.batch.dto.generate.MerOrderSum" >
@@ -145,7 +145,7 @@
         #{clearDate,jdbcType=DATE},
       </if>
       <if test="clearTime != null" >
-        #{clearTime,jdbcType=DATE},
+        #{clearTime,jdbcType=TIMESTAMP},
       </if>
       <if test="totalAmt != null" >
         #{totalAmt,jdbcType=DECIMAL},
@@ -177,7 +177,7 @@
         CLEAR_DATE = #{record.clearDate,jdbcType=DATE},
       </if>
       <if test="record.clearTime != null" >
-        CLEAR_TIME = #{record.clearTime,jdbcType=DATE},
+        CLEAR_TIME = #{record.clearTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.totalAmt != null" >
         TOTAL_AMT = #{record.totalAmt,jdbcType=DECIMAL},
@@ -198,7 +198,7 @@
     set SETTLE_NBR = #{record.settleNbr,jdbcType=VARCHAR},
       MER_NBR = #{record.merNbr,jdbcType=VARCHAR},
       CLEAR_DATE = #{record.clearDate,jdbcType=DATE},
-      CLEAR_TIME = #{record.clearTime,jdbcType=DATE},
+      CLEAR_TIME = #{record.clearTime,jdbcType=TIMESTAMP},
       TOTAL_AMT = #{record.totalAmt,jdbcType=DECIMAL},
       TOTAL_COUNT = #{record.totalCount,jdbcType=INTEGER},
       TOTAL_FEE_AMT = #{record.totalFeeAmt,jdbcType=DECIMAL}
@@ -216,7 +216,7 @@
         CLEAR_DATE = #{clearDate,jdbcType=DATE},
       </if>
       <if test="clearTime != null" >
-        CLEAR_TIME = #{clearTime,jdbcType=DATE},
+        CLEAR_TIME = #{clearTime,jdbcType=TIMESTAMP},
       </if>
       <if test="totalAmt != null" >
         TOTAL_AMT = #{totalAmt,jdbcType=DECIMAL},
@@ -234,7 +234,7 @@
     update MER_ORDER_SUM
     set MER_NBR = #{merNbr,jdbcType=VARCHAR},
       CLEAR_DATE = #{clearDate,jdbcType=DATE},
-      CLEAR_TIME = #{clearTime,jdbcType=DATE},
+      CLEAR_TIME = #{clearTime,jdbcType=TIMESTAMP},
       TOTAL_AMT = #{totalAmt,jdbcType=DECIMAL},
       TOTAL_COUNT = #{totalCount,jdbcType=INTEGER},
       TOTAL_FEE_AMT = #{totalFeeAmt,jdbcType=DECIMAL}

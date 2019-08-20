@@ -6,14 +6,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class ChannelOrderPreCheckExample {
+public class DownOrderHistExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ChannelOrderPreCheckExample() {
+    public DownOrderHistExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -1193,63 +1193,63 @@ public class ChannelOrderPreCheckExample {
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintIsNull() {
-            addCriterion("DATE_LAST_MAINT is null");
+        public Criteria andDateLastmaintIsNull() {
+            addCriterion("DATE_LASTMAINT is null");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintIsNotNull() {
-            addCriterion("DATE_LAST_MAINT is not null");
+        public Criteria andDateLastmaintIsNotNull() {
+            addCriterion("DATE_LASTMAINT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintEqualTo(Date value) {
-            addCriterion("DATE_LAST_MAINT =", value, "dateLastMaint");
+        public Criteria andDateLastmaintEqualTo(Date value) {
+            addCriterion("DATE_LASTMAINT =", value, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintNotEqualTo(Date value) {
-            addCriterion("DATE_LAST_MAINT <>", value, "dateLastMaint");
+        public Criteria andDateLastmaintNotEqualTo(Date value) {
+            addCriterion("DATE_LASTMAINT <>", value, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintGreaterThan(Date value) {
-            addCriterion("DATE_LAST_MAINT >", value, "dateLastMaint");
+        public Criteria andDateLastmaintGreaterThan(Date value) {
+            addCriterion("DATE_LASTMAINT >", value, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintGreaterThanOrEqualTo(Date value) {
-            addCriterion("DATE_LAST_MAINT >=", value, "dateLastMaint");
+        public Criteria andDateLastmaintGreaterThanOrEqualTo(Date value) {
+            addCriterion("DATE_LASTMAINT >=", value, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintLessThan(Date value) {
-            addCriterion("DATE_LAST_MAINT <", value, "dateLastMaint");
+        public Criteria andDateLastmaintLessThan(Date value) {
+            addCriterion("DATE_LASTMAINT <", value, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintLessThanOrEqualTo(Date value) {
-            addCriterion("DATE_LAST_MAINT <=", value, "dateLastMaint");
+        public Criteria andDateLastmaintLessThanOrEqualTo(Date value) {
+            addCriterion("DATE_LASTMAINT <=", value, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintIn(List<Date> values) {
-            addCriterion("DATE_LAST_MAINT in", values, "dateLastMaint");
+        public Criteria andDateLastmaintIn(List<Date> values) {
+            addCriterion("DATE_LASTMAINT in", values, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintNotIn(List<Date> values) {
-            addCriterion("DATE_LAST_MAINT not in", values, "dateLastMaint");
+        public Criteria andDateLastmaintNotIn(List<Date> values) {
+            addCriterion("DATE_LASTMAINT not in", values, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintBetween(Date value1, Date value2) {
-            addCriterion("DATE_LAST_MAINT between", value1, value2, "dateLastMaint");
+        public Criteria andDateLastmaintBetween(Date value1, Date value2) {
+            addCriterion("DATE_LASTMAINT between", value1, value2, "dateLastmaint");
             return (Criteria) this;
         }
 
-        public Criteria andDateLastMaintNotBetween(Date value1, Date value2) {
-            addCriterion("DATE_LAST_MAINT not between", value1, value2, "dateLastMaint");
+        public Criteria andDateLastmaintNotBetween(Date value1, Date value2) {
+            addCriterion("DATE_LASTMAINT not between", value1, value2, "dateLastmaint");
             return (Criteria) this;
         }
     }

@@ -1,6 +1,6 @@
 package com.sd.batch.base.constants;
 
-public class TransStatus {
+public class OrderStatus {
 
 	public static final String SUCCESS = "0";
 	

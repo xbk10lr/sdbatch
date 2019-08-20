@@ -82,9 +82,27 @@
     <table tableName="BATCH_JOB_SEQ">
 	</table> -->
 	
+	<table tableName="CHANNEL_ORDER">
+	</table>
+	<table tableName="MER_ORDER">
+	</table>
 	<table tableName="CHANNEL_ORDER_PRE_CHECK">
 	</table>
 	<table tableName="MER_ORDER_PRE_CHECK">
+	</table>
+	<table tableName="CHANNEL_ORDER_HIST">
+	</table>
+	<table tableName="MER_ORDER_HIST">
+	</table>
+	<table tableName="DOWN_ORDER">
+	</table>
+	<table tableName="DOWN_ORDER_HIST">
+	</table>
+	<table tableName="CHANNEL_ORDER_SUM">
+	</table>
+	<table tableName="MER_ORDER_SUM">
+	</table>
+	<table tableName="CHANNEL_MER_CHECK">
 	</table>
 	
    </context>

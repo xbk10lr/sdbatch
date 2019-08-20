@@ -9,7 +9,7 @@
     <result column="MER_FEE_AMT" property="merFeeAmt" jdbcType="DECIMAL" />
     <result column="MER_SEQ_NBR" property="merSeqNbr" jdbcType="VARCHAR" />
     <result column="MER_NO" property="merNo" jdbcType="VARCHAR" />
-    <result column="TRANS_TIME" property="transTime" jdbcType="DATE" />
+    <result column="TRANS_TIME" property="transTime" jdbcType="TIMESTAMP" />
     <result column="CHECK_DATE" property="checkDate" jdbcType="DATE" />
     <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
     <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
@@ -118,7 +118,7 @@
       DATE_LASTMAINT)
     values (#{platSeqNbr,jdbcType=VARCHAR}, #{transDate,jdbcType=DATE}, #{payerName,jdbcType=VARCHAR}, 
       #{transAmt,jdbcType=DECIMAL}, #{merFeeAmt,jdbcType=DECIMAL}, #{merSeqNbr,jdbcType=VARCHAR}, 
-      #{merNo,jdbcType=VARCHAR}, #{transTime,jdbcType=DATE}, #{checkDate,jdbcType=DATE}, 
+      #{merNo,jdbcType=VARCHAR}, #{transTime,jdbcType=TIMESTAMP}, #{checkDate,jdbcType=DATE}, 
       #{checkStatus,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, #{crtDateTime,jdbcType=TIMESTAMP}, 
       #{dateLastmaint,jdbcType=TIMESTAMP})
   </insert>
@@ -188,7 +188,7 @@
         #{merNo,jdbcType=VARCHAR},
       </if>
       <if test="transTime != null" >
-        #{transTime,jdbcType=DATE},
+        #{transTime,jdbcType=TIMESTAMP},
       </if>
       <if test="checkDate != null" >
         #{checkDate,jdbcType=DATE},
@@ -238,7 +238,7 @@
         MER_NO = #{record.merNo,jdbcType=VARCHAR},
       </if>
       <if test="record.transTime != null" >
-        TRANS_TIME = #{record.transTime,jdbcType=DATE},
+        TRANS_TIME = #{record.transTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.checkDate != null" >
         CHECK_DATE = #{record.checkDate,jdbcType=DATE},
@@ -269,7 +269,7 @@
       MER_FEE_AMT = #{record.merFeeAmt,jdbcType=DECIMAL},
       MER_SEQ_NBR = #{record.merSeqNbr,jdbcType=VARCHAR},
       MER_NO = #{record.merNo,jdbcType=VARCHAR},
-      TRANS_TIME = #{record.transTime,jdbcType=DATE},
+      TRANS_TIME = #{record.transTime,jdbcType=TIMESTAMP},
       CHECK_DATE = #{record.checkDate,jdbcType=DATE},
       CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
       ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
@@ -298,7 +298,7 @@
         MER_NO = #{merNo,jdbcType=VARCHAR},
       </if>
       <if test="transTime != null" >
-        TRANS_TIME = #{transTime,jdbcType=DATE},
+        TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
       </if>
       <if test="checkDate != null" >
         CHECK_DATE = #{checkDate,jdbcType=DATE},
@@ -326,7 +326,7 @@
       MER_FEE_AMT = #{merFeeAmt,jdbcType=DECIMAL},
       MER_SEQ_NBR = #{merSeqNbr,jdbcType=VARCHAR},
       MER_NO = #{merNo,jdbcType=VARCHAR},
-      TRANS_TIME = #{transTime,jdbcType=DATE},
+      TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
       CHECK_DATE = #{checkDate,jdbcType=DATE},
       CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
       ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
