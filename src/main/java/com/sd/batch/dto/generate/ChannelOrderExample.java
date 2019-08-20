@@ -884,52 +884,52 @@ public class ChannelOrderExample {
         }
 
         public Criteria andTransTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("TRANS_TIME =", value, "transTime");
+            addCriterion("TRANS_TIME =", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("TRANS_TIME <>", value, "transTime");
+            addCriterion("TRANS_TIME <>", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("TRANS_TIME >", value, "transTime");
+            addCriterion("TRANS_TIME >", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("TRANS_TIME >=", value, "transTime");
+            addCriterion("TRANS_TIME >=", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeLessThan(Date value) {
-            addCriterionForJDBCDate("TRANS_TIME <", value, "transTime");
+            addCriterion("TRANS_TIME <", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("TRANS_TIME <=", value, "transTime");
+            addCriterion("TRANS_TIME <=", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("TRANS_TIME in", values, "transTime");
+            addCriterion("TRANS_TIME in", values, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("TRANS_TIME not in", values, "transTime");
+            addCriterion("TRANS_TIME not in", values, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("TRANS_TIME between", value1, value2, "transTime");
+            addCriterion("TRANS_TIME between", value1, value2, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("TRANS_TIME not between", value1, value2, "transTime");
+            addCriterion("TRANS_TIME not between", value1, value2, "transTime");
             return (Criteria) this;
         }
 

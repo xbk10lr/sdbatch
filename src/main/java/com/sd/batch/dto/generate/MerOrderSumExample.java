@@ -344,52 +344,52 @@ public class MerOrderSumExample {
         }
 
         public Criteria andClearTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("CLEAR_TIME =", value, "clearTime");
+            addCriterion("CLEAR_TIME =", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("CLEAR_TIME <>", value, "clearTime");
+            addCriterion("CLEAR_TIME <>", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("CLEAR_TIME >", value, "clearTime");
+            addCriterion("CLEAR_TIME >", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("CLEAR_TIME >=", value, "clearTime");
+            addCriterion("CLEAR_TIME >=", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeLessThan(Date value) {
-            addCriterionForJDBCDate("CLEAR_TIME <", value, "clearTime");
+            addCriterion("CLEAR_TIME <", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("CLEAR_TIME <=", value, "clearTime");
+            addCriterion("CLEAR_TIME <=", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("CLEAR_TIME in", values, "clearTime");
+            addCriterion("CLEAR_TIME in", values, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("CLEAR_TIME not in", values, "clearTime");
+            addCriterion("CLEAR_TIME not in", values, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("CLEAR_TIME between", value1, value2, "clearTime");
+            addCriterion("CLEAR_TIME between", value1, value2, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("CLEAR_TIME not between", value1, value2, "clearTime");
+            addCriterion("CLEAR_TIME not between", value1, value2, "clearTime");
             return (Criteria) this;
         }
 
