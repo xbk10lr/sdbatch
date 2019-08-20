@@ -184,5 +184,4 @@ public class CheckDataServiceImpl implements CheckDataService{
 		checkError.setPlatSeqNbr(preCheckOrder.getPlatSeqNbr());
 		checkErrorMapper.insertSelective(checkError);
 	}
-
 }

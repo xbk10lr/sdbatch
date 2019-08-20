@@ -27,6 +27,38 @@ public class PreCheckOrder {
 	
 	private String downOrderStatus;
 
+	public String getPlatSeqNbr() {
+		return platSeqNbr;
+	}
+
+	public void setPlatSeqNbr(String platSeqNbr) {
+		this.platSeqNbr = platSeqNbr;
+	}
+
+	public String getCheckStatus() {
+		return checkStatus;
+	}
+
+	public void setCheckStatus(String checkStatus) {
+		this.checkStatus = checkStatus;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public String getDownOrderStatus() {
+		return downOrderStatus;
+	}
+
+	public void setDownOrderStatus(String downOrderStatus) {
+		this.downOrderStatus = downOrderStatus;
+	}
+
 	public String getOrderSeqNbr() {
 		return orderSeqNbr;
 	}
@@ -81,37 +113,5 @@ public class PreCheckOrder {
 
 	public void setTransTime(Date transTime) {
 		this.transTime = transTime;
-	}
-
-	public String getPlatSeqNbr() {
-		return platSeqNbr;
-	}
-
-	public void setPlatSeqNbr(String platSeqNbr) {
-		this.platSeqNbr = platSeqNbr;
-	}
-
-	public String getCheckStatus() {
-		return checkStatus;
-	}
-
-	public void setCheckStatus(String checkStatus) {
-		this.checkStatus = checkStatus;
-	}
-
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-
-	public String getDownOrderStatus() {
-		return downOrderStatus;
-	}
-
-	public void setDownOrderStatus(String downOrderStatus) {
-		this.downOrderStatus = downOrderStatus;
 	}
 }
