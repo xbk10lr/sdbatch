@@ -1,4 +1,4 @@
-package com.sd.batch.tasklet.mock.checkdata;
+package com.sd.batch.tasklet.checkdata.mock;
 
 import java.util.Date;
 
@@ -16,24 +16,27 @@ import com.sd.batch.service.CheckFileService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 下载对账文件
+ * 初始化对账文件登记表
  *
  */
 @Slf4j
 @Component
-public class DownCheckFileTasklet implements Tasklet {
-
+public class InitCheckFileTasklet implements Tasklet{
+	
 	@Autowired
 	private CheckFileService checkFileService;
 	
 	@Override
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1) throws Exception {
-		log.info("down check file tasklet start");
+		log.info("Init Check File Tasklet Start");
 		Date checkDate = (Date) arg1.getStepContext().getJobParameters().get(JobParameteresKey.CHECK_DATE);
-		//下载对账文件
-		checkFileService.downCheckFile(ChannelCode.MOCK, checkDate);
+		//先执行删除语句，确保当日记录唯一
+		checkFileService.deleteDuplicatedCheckChannelReg(ChannelCode.MOCK, checkDate);
+		//插入一条记录
+		checkFileService.insertCheckChannelReg(ChannelCode.MOCK, checkDate);
 		return RepeatStatus.FINISHED;
-
+		
 	}
-
+	
+	
 }

@@ -1,4 +1,4 @@
-package com.sd.batch.tasklet.mock.checkdata;
+package com.sd.batch.tasklet.checkdata.mock;
 
 import java.util.Date;
 
@@ -16,24 +16,26 @@ import com.sd.batch.service.CheckDataService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 数据清分汇总
+ * 对账 
  *
  */
 @Slf4j
 @Component
-public class ClearDataTasklet implements Tasklet{
+public class CheckDataTasklet implements Tasklet{
 	
 	@Autowired
 	private CheckDataService checkDataService;
 	
 	@Override
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1) throws Exception {
-		log.info("clear data tasklet start");
+		log.info("check data tasklet start");
 		Date checkDate = (Date) arg1.getStepContext().getJobParameters().get(JobParameteresKey.CHECK_DATE);
-		checkDataService.clearData(ChannelCode.MOCK, checkDate);
-		log.info("clear data tasklet complete");
+		//对账前置检查--判断当前对账日文对账文件是否解析成功
+		checkDataService.checkDataPreCheck(ChannelCode.MOCK, checkDate);
+		//开始对账，以下游对账文件为准
+		checkDataService.checkData(ChannelCode.MOCK, checkDate);
+		log.info("check data tasklet complete");
 		return RepeatStatus.FINISHED;
 	}
-	
 	
 }

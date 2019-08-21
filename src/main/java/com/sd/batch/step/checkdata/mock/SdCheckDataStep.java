@@ -1,4 +1,4 @@
-package com.sd.batch.step.mock.checkdata;
+package com.sd.batch.step.checkdata.mock;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.sd.batch.listener.StepCommonListener;
-import com.sd.batch.tasklet.mock.checkdata.ParseCheckFileTasklet;
+import com.sd.batch.tasklet.checkdata.mock.CheckDataTasklet;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class SdParseCheckFileStep {
+public class SdCheckDataStep {
 	
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
@@ -22,13 +22,13 @@ public class SdParseCheckFileStep {
 	private StepCommonListener stepCommonListener;
 	
 	@Autowired
-	private ParseCheckFileTasklet parseCheckFileTasklet;
+	private CheckDataTasklet checkDataTasklet;
 	
 	@Bean
-	public Step parseCheckFileStep() {
-		log.info("parse check file step start");
-		return stepBuilderFactory.get("parseCheckFile")
-				.tasklet(parseCheckFileTasklet)
+	public Step checkDataStep() {
+		log.info("check data step start");
+		return stepBuilderFactory.get("checkData")
+				.tasklet(checkDataTasklet)
 				.listener(stepCommonListener)
 				.build();
 	}

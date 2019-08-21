@@ -1,13 +1,10 @@
-package com.sd.batch.tasklet.mock.checkdata;
+package com.sd.batch.tasklet.checkmer;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.sd.batch.service.CheckDataService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,16 +14,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
-public class CleanDataTasklet implements Tasklet{
-	
-	@Autowired
-	private CheckDataService checkDataService;
+public class WriteMerCheckFileTasklet implements Tasklet{
 	
 	@Override
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1) throws Exception {
-		log.info("clean data tasklet start");
-		checkDataService.cleanData();
-		log.info("clean data tasklet complete");
+		log.info(this.getClass()+"start");
+		log.info(this.getClass()+"complete");
 		return RepeatStatus.FINISHED;
 	}
 	

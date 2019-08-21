@@ -1,4 +1,4 @@
-package com.sd.batch.tasklet.mock.checkdata;
+package com.sd.batch.tasklet.checkdata.mock;
 
 import java.util.Date;
 

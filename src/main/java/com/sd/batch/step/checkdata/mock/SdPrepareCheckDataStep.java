@@ -1,4 +1,4 @@
-package com.sd.batch.step.mock.checkdata;
+package com.sd.batch.step.checkdata.mock;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.sd.batch.listener.StepCommonListener;
-import com.sd.batch.tasklet.mock.checkdata.ClearDataTasklet;
+import com.sd.batch.tasklet.checkdata.mock.PrepareCheckDataTasklet;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class SdClearDataStep {
+public class SdPrepareCheckDataStep {
 	
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
@@ -22,13 +22,13 @@ public class SdClearDataStep {
 	private StepCommonListener stepCommonListener;
 	
 	@Autowired
-	private ClearDataTasklet clearDataTasklet;
+	private PrepareCheckDataTasklet prepareCheckDataTasklet;
 	
 	@Bean
-	public Step clearDataStep() {
-		log.info("clear data step start");
-		return stepBuilderFactory.get("clearData")
-				.tasklet(clearDataTasklet)
+	public Step prepareCheckDataStep() {
+		log.info("prepare check data step start");
+		return stepBuilderFactory.get("prepareCheckData")
+				.tasklet(prepareCheckDataTasklet)
 				.listener(stepCommonListener)
 				.build();
 	}

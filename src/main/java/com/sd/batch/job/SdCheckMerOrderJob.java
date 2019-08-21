@@ -13,52 +13,52 @@ import org.springframework.context.annotation.Configuration;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 通道对账队列 
+ * 商户对账队列
  *
  */
 @Slf4j
 @Configuration
 @EnableBatchProcessing
-public class SdCheckDataJob {
+public class SdCheckMerOrderJob {
 
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
 	
 	@Autowired
-	@Qualifier("parseCheckFileStep")
-	private Step parseCheckFileStep;
+	@Qualifier("prepareMerOrderStep")
+	private Step prepareMerOrderStep;
 	
 	@Autowired
-	@Qualifier("prepareCheckDataStep")
-	private Step prepareCheckDataStep;
+	@Qualifier("checkMerOrderStep")
+	private Step checkMerOrderStep;
 	
 	@Autowired
-	@Qualifier("checkDataStep")
-	private Step checkDataStep;
+	@Qualifier("clearMerOrderStep")
+	private Step clearMerOrderStep;
 	
 	@Autowired
-	@Qualifier("cleanDataStep")
-	private Step cleanDataStep;
+	@Qualifier("writeMerCheckFileStep")
+	private Step writeMerCheckFileStep;
 	
 	@Autowired
-	@Qualifier("clearDataStep")
-	private Step clearDataStep;
+	@Qualifier("cleanMerOrderStep")
+	private Step cleanMerOrderStep;
 	
 	@Bean
 	public Job checkDataJob() {
 		log.info("down check file job start");
 		return jobBuilderFactory.get("checkDataJob")
 				.incrementer(new RunIdIncrementer())
-				//解析对账文件
-				.start(parseCheckFileStep)
 				//对账数据准备
-				.next(prepareCheckDataStep)
+				.start(prepareMerOrderStep)
 				//对账
-				.next(checkDataStep)
-				//数据清分汇总
-				.next(clearDataStep)
-				//数据清理
-				.next(cleanDataStep)
+				.next(checkMerOrderStep)
+				//账单清分汇总
+				.next(clearMerOrderStep)
+				//生成商户对账文件
+				.next(writeMerCheckFileStep)
+				//商户订单清理
+				.next(cleanMerOrderStep)
 				.build();
 	}
 }

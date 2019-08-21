@@ -1,4 +1,4 @@
-package com.sd.batch.step.mock.checkdata;
+package com.sd.batch.step.checkmer;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.sd.batch.listener.StepCommonListener;
-import com.sd.batch.tasklet.mock.checkdata.PrepareCheckDataTasklet;
+import com.sd.batch.tasklet.checkmer.CheckMerOrderTasklet;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class SdPrepareCheckDataStep {
+public class SdCheckMerOrderStep {
 	
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
@@ -22,13 +22,13 @@ public class SdPrepareCheckDataStep {
 	private StepCommonListener stepCommonListener;
 	
 	@Autowired
-	private PrepareCheckDataTasklet prepareCheckDataTasklet;
+	private CheckMerOrderTasklet checkMerOrderTasklet;
 	
 	@Bean
-	public Step prepareCheckDataStep() {
-		log.info("prepare check data step start");
-		return stepBuilderFactory.get("prepareCheckData")
-				.tasklet(prepareCheckDataTasklet)
+	public Step checkMerOrderStep() {
+		log.info("checkMerOrder step start");
+		return stepBuilderFactory.get("checkMerOrder")
+				.tasklet(checkMerOrderTasklet)
 				.listener(stepCommonListener)
 				.build();
 	}
