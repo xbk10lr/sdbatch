@@ -13,4 +13,9 @@ public interface DaoService {
 	public void moveChannelOrderDataToPreCheckSheet(Date checkDate);
 	
 	public List<PreCheckOrder> selectPreCheckOrder();
+	
+	public void updateDownOrderByBatch(List<PreCheckOrder> list);
+	
+	public void updateChannelOrderPreCheckByBatch(List<PreCheckOrder> list);
+
 }

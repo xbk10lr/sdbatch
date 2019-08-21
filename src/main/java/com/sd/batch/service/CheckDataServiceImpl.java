@@ -1,6 +1,7 @@
 package com.sd.batch.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,28 +9,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sd.batch.base.constants.ChannelCode;
 import com.sd.batch.base.constants.CheckFlag;
 import com.sd.batch.base.constants.CheckStatus;
 import com.sd.batch.base.constants.DataDictConst;
 import com.sd.batch.base.constants.ErrorStatus;
 import com.sd.batch.base.constants.ErrorTypEnum;
 import com.sd.batch.base.constants.FileId;
-import com.sd.batch.base.constants.SysNbr;
 import com.sd.batch.base.constants.OrderStatus;
+import com.sd.batch.base.constants.SysNbr;
 import com.sd.batch.base.utils.DataDictUtils;
 import com.sd.batch.base.utils.IdSeqFactory;
 import com.sd.batch.base.utils.file.MockFileUtil;
+import com.sd.batch.dto.common.ClearChannelOrder;
 import com.sd.batch.dto.common.PreCheckOrder;
 import com.sd.batch.dto.generate.ChannelOrder;
 import com.sd.batch.dto.generate.ChannelOrderExample;
+import com.sd.batch.dto.generate.ChannelOrderPreCheckExample;
+import com.sd.batch.dto.generate.ChannelOrderSum;
 import com.sd.batch.dto.generate.CheckChannelReg;
 import com.sd.batch.dto.generate.CheckChannelRegExample;
 import com.sd.batch.dto.generate.CheckError;
 import com.sd.batch.dto.generate.DownOrder;
+import com.sd.batch.dto.generate.DownOrderExample;
 import com.sd.batch.mapper.ChannelOrderMapper;
+import com.sd.batch.mapper.ChannelOrderPreCheckMapper;
+import com.sd.batch.mapper.ChannelOrderSumMapper;
 import com.sd.batch.mapper.CheckChannelRegMapper;
 import com.sd.batch.mapper.CheckErrorMapper;
+import com.sd.batch.mapper.DownOrderMapper;
 import com.sd.batch.mapper.SysInfoMapper;
+import com.sd.batch.mapper.extend.ChannelOrderHistExtendMapper;
+import com.sd.batch.mapper.extend.ChannelOrderPreCheckExtendMapper;
+import com.sd.batch.mapper.extend.DownOrderHistExtendMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,6 +66,24 @@ public class CheckDataServiceImpl implements CheckDataService{
 	
 	@Autowired
 	private SysInfoMapper sysInfoMapper;
+	
+	@Autowired
+	private ChannelOrderHistExtendMapper channelOrderHistExtendMapper;
+	
+	@Autowired
+	private ChannelOrderPreCheckMapper channelOrderPreCheckMapper;
+	
+	@Autowired
+	private DownOrderHistExtendMapper downOrderHistExtendMapper;
+	
+	@Autowired
+	private DownOrderMapper downOrderMapper;
+	
+	@Autowired
+	private ChannelOrderPreCheckExtendMapper channelOrderPreCheckExtendMapper;
+	
+	@Autowired
+	private ChannelOrderSumMapper channelOrderSumMapper;
 
 	/**
 	 * 解析文件并且落下游订单表
@@ -130,7 +160,6 @@ public class CheckDataServiceImpl implements CheckDataService{
 	 * 对账
 	 */
 	@Override
-	@Transactional
 	public void checkData(String channelCode, Date checkDate) throws Exception {
 		List<PreCheckOrder> preCheckOrders = daoService.selectPreCheckOrder();
 		Date lastTransTime = null;
@@ -141,6 +170,7 @@ public class CheckDataServiceImpl implements CheckDataService{
 			}
 		}
 		log.info("channel "+channelCode+" have success order at "+checkDate+", deadline is "+lastTransTime);
+		List<PreCheckOrder> errorList = new ArrayList<PreCheckOrder>();
 		//循环对账
 		for(int i = preCheckOrders.size()-1;i>=0;i--){
 			PreCheckOrder preCheckOrder = preCheckOrders.get(i);
@@ -149,7 +179,8 @@ public class CheckDataServiceImpl implements CheckDataService{
 				//若下游对账文件中的金额和本地保存的不一致，出差错
 				if(preCheckOrder.getDownTransAmt().compareTo(preCheckOrder.getTransAmt()) != 0){
 					preCheckOrder.setCheckStatus(CheckStatus.UNCHECKED);
-					insertCheckError(preCheckOrder,ErrorTypEnum.AMT_NOT_EQUAL);
+					preCheckOrder.setErrorTypEnum(ErrorTypEnum.AMT_NOT_EQUAL);
+					errorList.add(preCheckOrder);
 				} else {
 					preCheckOrder.setCheckStatus(CheckStatus.CHECKED);
 					preCheckOrder.setDownOrderStatus(OrderStatus.SUCCESS);
@@ -159,7 +190,8 @@ public class CheckDataServiceImpl implements CheckDataService{
 				//若此时订单表中交易状态为成功，出差错
 				if(OrderStatus.SUCCESS.equals(preCheckOrder.getOrderStatus())){
 					preCheckOrder.setCheckStatus(CheckStatus.UNCHECKED);
-					insertCheckError(preCheckOrder,ErrorTypEnum.UP_SUCCESS_DOWN_FAIL);
+					preCheckOrder.setErrorTypEnum(ErrorTypEnum.UP_SUCCESS_DOWN_FAIL);
+					errorList.add(preCheckOrder);
 				} else {
 					//若该笔订单时间在最后一笔订单交易时间之前
 					if(preCheckOrder.getTransTime().before(lastTransTime)){
@@ -171,17 +203,61 @@ public class CheckDataServiceImpl implements CheckDataService{
 				}
 			}
 		}
+		//对账后的更新和落库处理
+		checkUpdateAndInsertSheet(preCheckOrders, errorList);
 		
 	}
 	
-	private void insertCheckError(PreCheckOrder preCheckOrder,ErrorTypEnum errorTypEnum){
+	@Transactional
+	private void checkUpdateAndInsertSheet(List<PreCheckOrder> preCheckOrders,List<PreCheckOrder> errorList){
+		//插入差错表
+		for(PreCheckOrder preCheckOrder:errorList){
+			insertCheckError(preCheckOrder);
+		}
+		//批量更新下游订单表
+		daoService.updateDownOrderByBatch(preCheckOrders);
+		//批量更新渠道订单待对账表
+		daoService.updateChannelOrderPreCheckByBatch(preCheckOrders);
+	}
+	
+	private void insertCheckError(PreCheckOrder preCheckOrder){
 		CheckError checkError = new CheckError();
 		checkError.setClearDate(sysInfoMapper.selectByPrimaryKey(SysNbr.BATCH_NAME).getNowDate());
-		checkError.setErrorTyp(errorTypEnum.getErrorTyp());
-		checkError.setErrorDesc(errorTypEnum.getErrorDesc());
+		checkError.setErrorTyp(preCheckOrder.getErrorTypEnum().getErrorTyp());
+		checkError.setErrorDesc(preCheckOrder.getErrorTypEnum().getErrorDesc());
 		checkError.setErrorNbr(IdSeqFactory.getIdSeqByTimestamp(preCheckOrder.getOrderSeqNbr()));
 		checkError.setErrorStatus(ErrorStatus.WAIT_HANDLE);
 		checkError.setPlatSeqNbr(preCheckOrder.getPlatSeqNbr());
 		checkErrorMapper.insertSelective(checkError);
+	}
+
+	@Override
+	@Transactional
+	public void cleanData() throws Exception {
+		//把待对账表中对账平的数据移到历史表中
+		channelOrderHistExtendMapper.insertChannelOrderHistFromPreCheck(CheckStatus.CHECKED);
+		//删除待对账表中对账平的数据
+		ChannelOrderPreCheckExample channelOrderPreCheckExample = new ChannelOrderPreCheckExample();
+		channelOrderPreCheckExample.createCriteria().andCheckStatusEqualTo(CheckStatus.CHECKED);
+		channelOrderPreCheckMapper.deleteByExample(channelOrderPreCheckExample);
+		//把下游订单表中对账平的数据移到历史表中
+		downOrderHistExtendMapper.insertDownOrderHistFromDownOrder(CheckStatus.CHECKED);
+		//删除下游表中对账平的数据
+		DownOrderExample downOrderExample = new DownOrderExample();
+		downOrderExample.createCriteria().andCheckStatusEqualTo(CheckStatus.CHECKED);
+		downOrderMapper.deleteByExample(downOrderExample);
+	}
+
+	@Override
+	public void clearData(String channelCode, Date checkDate) throws Exception {
+		ClearChannelOrder clearChannelOrder = channelOrderPreCheckExtendMapper.clearChannelOrder(channelCode, checkDate);
+		ChannelOrderSum channelOrderSum = new ChannelOrderSum();
+		channelOrderSum.setChannelCode(channelCode);
+		channelOrderSum.setClearDate(sysInfoMapper.selectByPrimaryKey(SysNbr.BATCH_NAME).getNowDate());
+		channelOrderSum.setSettleNbr(IdSeqFactory.getIdSeqByTimestamp(ChannelCode.MOCK));
+		channelOrderSum.setTotalCount(clearChannelOrder.getTotalCount());
+		channelOrderSum.setTotalAmt(clearChannelOrder.getTotalAmt());
+		channelOrderSumMapper.insertSelective(channelOrderSum);
+		
 	}
 }

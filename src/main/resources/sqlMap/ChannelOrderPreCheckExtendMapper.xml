@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sd.batch.mapper.extend.ChannelOrderPreCheckExtendMapper" >
+  <update id="updateChannelOrderPreCheckByBatch" parameterType="list">
+       update CHANNEL_ORDER_PRE_CHECK
+       <trim prefix="set" suffixOverrides=",">
+        <trim prefix="CHECK_STATUS = case" suffix="end,">
+            <foreach collection="list" item="item" index="index">
+                 <if test="item.checkStatus!=null">
+                  when ORDER_SEQ_NBR=#{item.orderSeqNbr} then #{item.checkStatus}
+                 </if>
+            </foreach>
+         </trim>
+         <trim prefix="ORDER_STATUS = case" suffix="end,">
+            <foreach collection="list" item="item" index="index">
+                 <if test="item.downOrderStatus!=null">
+                  when ORDER_SEQ_NBR=#{item.orderSeqNbr} then #{item.downOrderStatus}
+                 </if>
+            </foreach>
+         </trim>
+        </trim>
+       where ORDER_SEQ_NBR in
+       <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.orderSeqNbr,jdbcType=VARCHAR}
+        </foreach>
+  </update>
+  
+  <resultMap id="clearChannelOrderResultMap" type="com.sd.batch.dto.common.ClearChannelOrder" >
+  	<result column="TOTAL_COUNT" property="totalCount" jdbcType="DECIMAL" />
+    <result column="SUCCESS_COUNT" property="successCount" jdbcType="DECIMAL" />
+    <result column="FAIL_COUNT" property="failCount" jdbcType="DECIMAL" />
+    <result column="UNCHECK_COUNT" property="uncheckCount" jdbcType="DECIMAL" />
+    <result column="TOTAL_AMT" property="totalAmt" jdbcType="DECIMAL" />
+    <result column="SUCCESS_AMT" property="successAmt" jdbcType="DECIMAL" />
+    <result column="FAIL_AMT" property="failAmt" jdbcType="DECIMAL" />
+    <result column="UNCHECK_AMT" property="uncheckAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="clearChannelOrder" parameterType="map" resultMap="clearChannelOrderResultMap" >
+    select count(*) as TOTAL_COUNT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+     union all
+    select count(*) as SUCCESS_COUNT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+    and ORDER_STATUS='0'
+    and CHECK_STATUS='2'
+     union all
+    select count(*) as FAIL_COUNT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+    and ORDER_STATUS='1'
+    and CHECK_STATUS='2'
+     union all
+    select count(*) as FAIL_COUNT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+    and ORDER_STATUS='1'
+    and CHECK_STATUS='3'
+     union all
+    select sum(TRANS_AMT) as TOTAL_AMT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+	 union all
+    select sum(TRANS_AMT) as SUCCESS_AMT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+    and ORDER_STATUS='0'
+    and CHECK_STATUS='2'    
+     union all
+    select sum(TRANS_AMT) as FAIL_AMT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+    and ORDER_STATUS='1'
+    and CHECK_STATUS='2' 
+     union all
+    select sum(TRANS_AMT) as UNCHECK_AMT from CHANNEL_ORDER_PRE_CHECK
+    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+    and TRANS_DATE=#{checkDate,jdbcType=DATE}
+    and ORDER_STATUS='1'
+    and CHECK_STATUS='3' 
+  </select>
+  
+</mapper>

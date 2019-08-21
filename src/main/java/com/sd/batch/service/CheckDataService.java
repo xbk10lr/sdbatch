@@ -17,4 +17,9 @@ public interface CheckDataService {
 	
 	public void checkData(String channelCode,Date checkDate) throws Exception;
 	
+	public void cleanData() throws Exception;
+	
+	public void clearData(String channelCode,Date checkDate) throws Exception;
+
+	
 }

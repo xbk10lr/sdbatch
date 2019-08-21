@@ -20,4 +20,60 @@
 	      #{downOrder.crtDateTime,jdbcType=TIMESTAMP}, #{downOrder.dateLastmaint,jdbcType=TIMESTAMP})
     </foreach> 
   </insert>
+  <resultMap id="PreCheckOrderResultMap" type="com.sd.batch.dto.common.PreCheckOrder" >
+  	<result column="ORDER_SEQ_NBR" property="orderSeqNbr" jdbcType="VARCHAR" />
+    <result column="TRANS_DATE" property="transDate" jdbcType="DATE" />
+    <result column="TRANS_AMT" property="transAmt" jdbcType="DECIMAL" />
+    <result column="DOWN_TRANS_AMT" property="downTransAmt" jdbcType="DECIMAL" />
+    <result column="DOWN_EXIST" property="downExist" jdbcType="VARCHAR" />
+    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <result column="TRANS_TIME" property="transTime" jdbcType="TIMESTAMP" />
+    <result column="PLAT_SEQ_NBR" property="platSeqNbr" jdbcType="VARCHAR" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectPreCheckOrder" resultMap="PreCheckOrderResultMap" parameterType="map" >
+    select 
+    A.ORDER_SEQ_NBR,A.TRANS_DATE,A.TRANS_AMT,B.DOWN_TRANS_AMT,
+    'true' as DOWN_EXIST, A.CHANNEL_CODE,A.TRANS_TIME,A.PLAT_SEQ_NBR,
+    A.ORDER_STATUS
+    from CHANNEL_ORDER_PRE_CHECK A, DOWN_ORDER B
+    where A.ORDER_SEQ_NBR = B.ORDER_SEQ_NBR
+      and A.CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      and A.CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR}
+    union all
+    select 
+    A.ORDER_SEQ_NBR,A.TRANS_DATE,A.TRANS_AMT,B.DOWN_TRANS_AMT,
+    'false' as DOWN_EXIST, A.CHANNEL_CODE,A.TRANS_TIME,A.PLAT_SEQ_NBR,
+    A.ORDER_STATUS 
+    from CHANNEL_ORDER_PRE_CHECK A left join DOWN_ORDER B on 
+      A.ORDER_SEQ_NBR = B.ORDER_SEQ_NBR where B.ORDER_SEQ_NBR is null
+      and A.CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      and A.CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR}
+     order by TRANS_TIME desc
+   </select>
+  
+  <update id="updateDownOrderByBatch" parameterType="list">
+       update DOWN_ORDER
+       <trim prefix="set" suffixOverrides=",">
+        <trim prefix="CHECK_STATUS = case" suffix="end,">
+            <foreach collection="list" item="item" index="index">
+                 <if test="item.checkStatus!=null">
+                  when ORDER_SEQ_NBR=#{item.orderSeqNbr} then #{item.checkStatus}
+                 </if>
+            </foreach>
+         </trim>
+         <trim prefix="ORDER_STATUS = case" suffix="end,">
+            <foreach collection="list" item="item" index="index">
+                 <if test="item.downOrderStatus!=null">
+                  when ORDER_SEQ_NBR=#{item.orderSeqNbr} then #{item.downOrderStatus}
+                 </if>
+            </foreach>
+         </trim>
+        </trim>
+       where ORDER_SEQ_NBR in
+       <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.orderSeqNbr,jdbcType=VARCHAR}
+        </foreach>
+  </update>
+  
 </mapper>

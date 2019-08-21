@@ -37,12 +37,16 @@ public class SdCheckDataJob {
 	@Qualifier("cleanDataStep")
 	private Step cleanDataStep;
 	
+	@Autowired
+	@Qualifier("clearDataStep")
+	private Step clearDataStep;
+	
 	@Bean
 	public Job checkDataJob() {
 		log.info("down check file job start");
 		return jobBuilderFactory.get("checkDataJob")
 				.incrementer(new RunIdIncrementer())
-				.start(parseCheckFileStep).next(prepareCheckDataStep).next(checkDataStep).next(cleanDataStep)
+				.start(parseCheckFileStep).next(prepareCheckDataStep).next(checkDataStep).next(clearDataStep).next(cleanDataStep)
 				.build();
 	}
 }
