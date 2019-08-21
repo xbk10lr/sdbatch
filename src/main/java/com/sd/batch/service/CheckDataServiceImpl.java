@@ -257,6 +257,12 @@ public class CheckDataServiceImpl implements CheckDataService{
 		channelOrderSum.setSettleNbr(IdSeqFactory.getIdSeqByTimestamp(ChannelCode.MOCK));
 		channelOrderSum.setTotalCount(clearChannelOrder.getTotalCount());
 		channelOrderSum.setTotalAmt(clearChannelOrder.getTotalAmt());
+		channelOrderSum.setTotalSuccessCount(clearChannelOrder.getSuccessCount());
+		channelOrderSum.setTotalFailCount(clearChannelOrder.getFailCount());
+		channelOrderSum.setTotalUncheckCount(clearChannelOrder.getUncheckCount());
+		channelOrderSum.setTotalSuccessAmt(clearChannelOrder.getSuccessAmt());
+		channelOrderSum.setTotalFailAmt(clearChannelOrder.getFailAmt());
+		channelOrderSum.setTotalUncheckAmt(clearChannelOrder.getUncheckAmt());
 		channelOrderSumMapper.insertSelective(channelOrderSum);
 		
 	}

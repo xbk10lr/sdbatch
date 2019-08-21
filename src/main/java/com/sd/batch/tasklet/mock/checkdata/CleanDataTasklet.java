@@ -11,6 +11,10 @@ import com.sd.batch.service.CheckDataService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 数据清理
+ *
+ */
 @Slf4j
 @Component
 public class CleanDataTasklet implements Tasklet{

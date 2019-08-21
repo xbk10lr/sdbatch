@@ -15,6 +15,10 @@ import com.sd.batch.service.CheckFileService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 初始化对账文件登记表
+ *
+ */
 @Slf4j
 @Component
 public class InitCheckFileTasklet implements Tasklet{

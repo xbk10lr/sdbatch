@@ -15,6 +15,10 @@ import com.sd.batch.service.CheckFileService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 下载对账文件
+ *
+ */
 @Slf4j
 @Component
 public class DownCheckFileTasklet implements Tasklet {

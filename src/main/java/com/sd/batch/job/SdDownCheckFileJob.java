@@ -38,7 +38,12 @@ public class SdDownCheckFileJob {
 		log.info("down check file job start");
 		return jobBuilderFactory.get("downCheckFileJob")
 				.incrementer(new RunIdIncrementer())
-				.start(initCheckFileStep).next(applyCheckFileStep).next(downCheckFileStep)
+				//初始化对账文件登记表
+				.start(initCheckFileStep)
+				//申请对账文件
+				.next(applyCheckFileStep)
+				//下载对账文件
+				.next(downCheckFileStep)
 				.build();
 	}
 }

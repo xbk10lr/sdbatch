@@ -15,6 +15,10 @@ import com.sd.batch.service.CheckDataService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 对账 
+ *
+ */
 @Slf4j
 @Component
 public class CheckDataTasklet implements Tasklet{
