@@ -39,6 +39,7 @@ import com.sd.batch.mapper.CheckChannelRegMapper;
 import com.sd.batch.mapper.CheckErrorMapper;
 import com.sd.batch.mapper.DownOrderMapper;
 import com.sd.batch.mapper.SysInfoMapper;
+import com.sd.batch.mapper.extend.ChannelMerCheckExtendMapper;
 import com.sd.batch.mapper.extend.ChannelOrderHistExtendMapper;
 import com.sd.batch.mapper.extend.ChannelOrderPreCheckExtendMapper;
 import com.sd.batch.mapper.extend.DownOrderHistExtendMapper;
@@ -84,6 +85,9 @@ public class CheckDataServiceImpl implements CheckDataService{
 	
 	@Autowired
 	private ChannelOrderSumMapper channelOrderSumMapper;
+	
+	@Autowired
+	private ChannelMerCheckExtendMapper channelMerCheckExtendMapper;
 
 	/**
 	 * 解析文件并且落下游订单表
@@ -236,6 +240,8 @@ public class CheckDataServiceImpl implements CheckDataService{
 	public void cleanData() throws Exception {
 		//把待对账表中对账平的数据移到历史表中
 		channelOrderHistExtendMapper.insertChannelOrderHistFromPreCheck(CheckStatus.CHECKED);
+		//把待对账表中对账平的数据移到商户通道对账表中
+		channelMerCheckExtendMapper.insertChannelMerCheckFromPreCheck();
 		//删除待对账表中对账平的数据
 		ChannelOrderPreCheckExample channelOrderPreCheckExample = new ChannelOrderPreCheckExample();
 		channelOrderPreCheckExample.createCriteria().andCheckStatusEqualTo(CheckStatus.CHECKED);
