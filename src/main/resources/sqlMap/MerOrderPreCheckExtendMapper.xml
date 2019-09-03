@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sd.batch.mapper.extend.MerOrderPreCheckExtendMapper" >
+  <update id="updatePreCheckMerOrderSuccess" >
+    update MER_ORDER_PRE_CHECK set ORDER_STATUS='0' ,CHECK_STATUS='2' where PLAT_SEQ_NBR in 
+    (select PLAT_SEQ_NBR from MER_ORDER_PRE_CHECK a, CHANNEL_MER_CHECK b 
+    where b.CHECK_STATUS='2' and b.ORDER_STATUS='0' and a.CHECK_STATUS='1')
+  </update>
+</mapper>

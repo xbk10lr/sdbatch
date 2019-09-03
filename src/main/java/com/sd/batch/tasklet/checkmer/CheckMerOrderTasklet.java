@@ -12,7 +12,7 @@ import com.sd.batch.service.CheckMerOrderService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 数据清理
+ * 商户对账
  *
  */
 @Slf4j

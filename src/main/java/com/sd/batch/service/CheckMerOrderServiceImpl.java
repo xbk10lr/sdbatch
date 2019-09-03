@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sd.batch.base.constants.CheckStatus;
+import com.sd.batch.base.constants.OrderStatus;
 import com.sd.batch.dto.generate.MerOrderExample;
 import com.sd.batch.dto.generate.MerOrderPreCheck;
 import com.sd.batch.dto.generate.MerOrderPreCheckExample;
 import com.sd.batch.mapper.MerOrderMapper;
 import com.sd.batch.mapper.MerOrderPreCheckMapper;
+import com.sd.batch.mapper.extend.MerOrderHistExtendMapper;
 import com.sd.batch.mapper.extend.MerOrderPreCheckExtendMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +23,17 @@ import lombok.extern.slf4j.Slf4j;
 public class CheckMerOrderServiceImpl implements CheckMerOrderService {
 
 	@Autowired
-	private MerOrderPreCheckExtendMapper merOrderHistExtendMapper;
+	private MerOrderHistExtendMapper merOrderHistExtendMapper;
 	
 	@Autowired
 	private MerOrderMapper merOrderMapper;
 	
 	@Autowired
 	private MerOrderPreCheckMapper merOrderPreCheckMapper;
+	
+	@Autowired
+	private MerOrderPreCheckExtendMapper merOrderPreCheckExtendMapper;
+	
 	
 	@Override
 	@Transactional
@@ -48,9 +54,18 @@ public class CheckMerOrderServiceImpl implements CheckMerOrderService {
 		log.info("merOrderPreCheck end");
 	}
 
+	@Transactional
 	@Override
 	public void merOrderCheck() {
-		
+		//先更新商户订单中交易成功的
+		merOrderPreCheckExtendMapper.updatePreCheckMerOrderSuccess();
+		MerOrderPreCheckExample example = new MerOrderPreCheckExample();
+		//其余的更新为交易失败
+		example.createCriteria().andCheckStatusEqualTo(CheckStatus.PRECHECK);
+		MerOrderPreCheck record = new MerOrderPreCheck();
+		record.setCheckStatus(CheckStatus.CHECKED);
+		record.setOrderStatus(OrderStatus.FAIL);
+		merOrderPreCheckMapper.updateByExampleSelective(record, example);
 	}
 
 }

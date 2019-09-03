@@ -3,8 +3,6 @@ package com.sd.batch.dto.common;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.sd.batch.base.constants.ErrorTypEnum;
-
 public class PreCheckMerOrder {
 	
 	private String orderSeqNbr;
@@ -28,8 +26,6 @@ public class PreCheckMerOrder {
 	private String orderStatus;
 	
 	private String downOrderStatus;
-	
-	private ErrorTypEnum errorTypEnum;
 
 	public String getPlatSeqNbr() {
 		return platSeqNbr;
@@ -117,13 +113,5 @@ public class PreCheckMerOrder {
 
 	public void setTransTime(Date transTime) {
 		this.transTime = transTime;
-	}
-
-	public ErrorTypEnum getErrorTypEnum() {
-		return errorTypEnum;
-	}
-
-	public void setErrorTypEnum(ErrorTypEnum errorTypEnum) {
-		this.errorTypEnum = errorTypEnum;
 	}
 }
