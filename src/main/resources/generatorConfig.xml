@@ -98,11 +98,11 @@
 	</table>
 	<table tableName="DOWN_ORDER_HIST">
 	</table> -->
-	<table tableName="CHANNEL_ORDER_SUM">
+	<!-- <table tableName="CHANNEL_ORDER_SUM">
+	</table> -->
+	<table tableName="MER_ORDER_SUM">
 	</table>
-	<!-- <table tableName="MER_ORDER_SUM">
-	</table>
-	<table tableName="CHANNEL_MER_CHECK">
+	<!-- <table tableName="CHANNEL_MER_CHECK">
 	</table> -->
 	
    </context>

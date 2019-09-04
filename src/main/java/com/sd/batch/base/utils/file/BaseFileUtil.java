@@ -2,6 +2,7 @@ package com.sd.batch.base.utils.file;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,4 +83,34 @@ public abstract class BaseFileUtil {
     }
 
 	protected abstract DownOrder parseMapToDownOrder(Map<String, String> map);
+	
+	public void writeFile(String fileHeadId,String fileId,String filePath,String fileName, List<Map<String,Object>> dataMaps,Map<String,Object> fileHead) throws Exception{
+		FileOutputStream fos = null;
+		FileFormat fileHeadFormat = FileFormatFactory.getFileFormat(fileHeadId);
+		FileFormat fileFormat = FileFormatFactory.getFileFormat(fileId);
+		try{
+			fos = new FileOutputStream(filePath+fileName,true);
+			StringBuilder sbhead = new StringBuilder();
+			for(String field : fileHeadFormat.getFields()){
+				sbhead.append(fileHead.get(field)+fileHeadFormat.getLineSeparator());
+			}
+			sbhead.append("\r\n");
+			fos.write(sbhead.toString().getBytes(fileHeadFormat.getEncoding()));
+			for(Map<String, Object> dataMap:dataMaps){
+				StringBuilder sbbody = new StringBuilder();
+				for(String field : fileFormat.getFields()){
+					sbbody.append(dataMap.get(field)+fileFormat.getLineSeparator());
+				}	
+				sbbody.append("\r\n");
+				fos.write(sbbody.toString().getBytes(fileFormat.getEncoding()));
+			}
+		}catch(Exception e){
+			log.error(e.getMessage(),e);
+			throw e;
+		} finally {
+			if(fos!=null){
+				fos.close();
+			}
+		}
+	}
 }

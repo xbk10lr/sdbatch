@@ -6,4 +6,42 @@
     (select PLAT_SEQ_NBR from MER_ORDER_PRE_CHECK a, CHANNEL_MER_CHECK b 
     where b.CHECK_STATUS='2' and b.ORDER_STATUS='0' and a.CHECK_STATUS='1')
   </update>
+  
+  <sql id="Base_Column_List" >
+    PLAT_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, MER_FEE_AMT, MER_SEQ_NBR, MER_NO, 
+    TRANS_TIME, CHECK_DATE, CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
+  </sql>
+  <insert id="insertMerOrderPreCheckFromMerOrder" parameterType="java.util.Date" >
+    insert into MER_ORDER_PRE_CHECK (
+      <include refid="Base_Column_List" />
+    )
+    select
+      <include refid="Base_Column_List" />
+    from MER_ORDER
+	where TRANS_DATE <![CDATA[<=]]> #{transDate,jdbcType=DATE}
+  </insert>
+  <resultMap id="clearMerOrderResultMap" type="com.sd.batch.dto.common.ClearMerOrder" >
+  	<result column="TOTAL_COUNT" property="totalCount" jdbcType="DECIMAL" />
+    <result column="SUCCESS_COUNT" property="successCount" jdbcType="DECIMAL" />
+    <result column="FAIL_COUNT" property="failCount" jdbcType="DECIMAL" />
+    <result column="UNCHECK_COUNT" property="uncheckCount" jdbcType="DECIMAL" />
+    <result column="TOTAL_AMT" property="totalAmt" jdbcType="DECIMAL" />
+    <result column="SUCCESS_AMT" property="successAmt" jdbcType="DECIMAL" />
+    <result column="FAIL_AMT" property="failAmt" jdbcType="DECIMAL" />
+    <result column="UNCHECK_AMT" property="uncheckAmt" jdbcType="DECIMAL" />
+    <result column="MER_NO" property="merNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getMerOrderSum" parameterType="java.util.Date" resultMap="clearMerOrderResultMap">
+  	select count(1) as TOTAL_COUNT,sum(TRANS_AMT) as TOTAL_AMT, 
+	  	sum(case when ORDER_STATUS='0' and CHECK_STATUS='2' then 1 else 0 end) as SUCCESS_COUNT,
+	  	sum(case when ORDER_STATUS='0' and CHECK_STATUS='2' then TRANS_AMT else 0 end) as SUCCESS_AMT,
+	  	sum(case when order_status='1' and check_status='2' then 1 else 0 end) as FAIL_COUNT,
+	  	sum(case when order_status='1' and check_status='2' then TRANS_AMT else 0 end) as FAIL_AMT,
+	  	sum(case when check_status='3' then 1 else 0 end) as UNCHECK_COUNT,
+	  	sum(case when check_status='3' then TRANS_AMT else 0 end) as UNCHECK_AMT,
+	  	MER_NO
+  	from MER_ORDER_PRE_CHECK
+  		where TRANS_DATE=#{checkDate,jdbcType=DATE} 
+  	group by MER_NO
+  </select>
 </mapper>

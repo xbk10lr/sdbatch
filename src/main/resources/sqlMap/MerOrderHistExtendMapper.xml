@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sd.batch.mapper.extend.MerOrderHistExtendMapper" >
-  <sql id="Base_Column_List" >
-    PLAT_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, MER_FEE_AMT, MER_SEQ_NBR, MER_NO, 
-    TRANS_TIME, CHECK_DATE, CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
-  </sql>
-  <insert id="insertMerOrderHistFromMerOrder" parameterType="java.util.Date" >
-    insert into MER_ORDER_PRE_CHECK (
-      <include refid="Base_Column_List" />
-    )
-    select
-      <include refid="Base_Column_List" />
-    from MER_ORDER
-	where TRANS_DATE <![CDATA[<=]]> #{transDate,jdbcType=DATE}
-  </insert>
+ 	<sql id="Base_Column_List" >
+	    PLAT_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, MER_FEE_AMT, MER_SEQ_NBR, MER_NO, 
+	    TRANS_TIME, CHECK_DATE, CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
+  	</sql>
+  	<insert id="insertMerOrderHistFromMerOrder" >
+	    insert into MER_ORDER_HIST (
+	      <include refid="Base_Column_List" />
+	    )
+	    select
+	      <include refid="Base_Column_List" />
+	    from MER_ORDER_PRE_CHECK
+		where CHECK_STATUS='2'
+  	</insert>
 </mapper>

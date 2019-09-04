@@ -36,49 +36,16 @@
     <result column="UNCHECK_AMT" property="uncheckAmt" jdbcType="DECIMAL" />
   </resultMap>
   <select id="clearChannelOrder" parameterType="map" resultMap="clearChannelOrderResultMap" >
-    select count(*) as TOTAL_COUNT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
+   select count(1) as TOTAL_COUNT,sum(TRANS_AMT) as TOTAL_AMT, 
+   sum(case when ORDER_STATUS='0' and CHECK_STATUS='2' then 1 else 0 end) as SUCCESS_COUNT,
+   sum(case when ORDER_STATUS='0' and CHECK_STATUS='2' then TRANS_AMT else 0 end) as SUCCESS_AMT,
+   sum(case when order_status='1' and check_status='2' then 1 else 0 end) as FAIL_COUNT,
+   sum(case when order_status='1' and check_status='2' then TRANS_AMT else 0 end) as FAIL_AMT,
+   sum(case when check_status='3' then 1 else 0 end) as UNCHECK_COUNT,
+   sum(case when check_status='3' then TRANS_AMT else 0 end) as UNCHECK_AMT
+   from CHANNEL_ORDER_PRE_CHECK
+   where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
     and TRANS_DATE=#{checkDate,jdbcType=DATE}
-     union all
-    select count(*) as SUCCESS_COUNT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
-    and TRANS_DATE=#{checkDate,jdbcType=DATE}
-    and ORDER_STATUS='0'
-    and CHECK_STATUS='2'
-     union all
-    select count(*) as FAIL_COUNT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
-    and TRANS_DATE=#{checkDate,jdbcType=DATE}
-    and ORDER_STATUS='1'
-    and CHECK_STATUS='2'
-     union all
-    select count(*) as FAIL_COUNT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
-    and TRANS_DATE=#{checkDate,jdbcType=DATE}
-    and ORDER_STATUS='1'
-    and CHECK_STATUS='3'
-     union all
-    select sum(TRANS_AMT) as TOTAL_AMT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
-    and TRANS_DATE=#{checkDate,jdbcType=DATE}
-	 union all
-    select sum(TRANS_AMT) as SUCCESS_AMT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
-    and TRANS_DATE=#{checkDate,jdbcType=DATE}
-    and ORDER_STATUS='0'
-    and CHECK_STATUS='2'    
-     union all
-    select sum(TRANS_AMT) as FAIL_AMT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
-    and TRANS_DATE=#{checkDate,jdbcType=DATE}
-    and ORDER_STATUS='1'
-    and CHECK_STATUS='2' 
-     union all
-    select sum(TRANS_AMT) as UNCHECK_AMT from CHANNEL_ORDER_PRE_CHECK
-    where CHANNEL_CODE=#{channelCode,jdbcType=VARCHAR}
-    and TRANS_DATE=#{checkDate,jdbcType=DATE}
-    and ORDER_STATUS='1'
-    and CHECK_STATUS='3' 
   </select>
   
 </mapper>

@@ -8,7 +8,23 @@
 		<field name="jyje" annotation="交易金额"/>
 		<field name="sdptjyrq" annotation="收单平台交易日期"/>
 		<field name="xyjyrq" annotation="下游交易日期"/>
-		<field name="bz" annotation="币种"/>
 	</file >
-
+	
+	<!-- 给上游生成对账文件体 -->
+	<file id="writeCheckFileBody" skipBeginLine="true" encoding="utf-8" lineSeparator="|" skipEndLine="false">
+		<field name="shh" annotation="商户号"/>
+		<field name="sdptlsh" annotation="收单平台流水号"/>
+		<field name="shddh" annotation="商户订单号"/>
+		<field name="jyje" annotation="交易金额"/>
+		<field name="sdptjyrq" annotation="收单平台交易日期"/>
+	</file >
+	
+	<!-- 给上游生成对账文件头 -->
+	<file id="writeCheckFileHead" skipBeginLine="true" encoding="utf-8" lineSeparator="|" skipEndLine="false">
+		<field name="shh" annotation="商户号"/>
+		<field name="zje" annotation="总金额"/>
+		<field name="zbs" annotation="总笔数"/>
+		<field name="cgzje" annotation="成功总金额"/>
+		<field name="cgzbs" annotation="成功总笔数"/>
+	</file >
 </checkFiles>

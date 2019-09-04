@@ -203,73 +203,73 @@ public class MerOrderSumExample {
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrIsNull() {
-            addCriterion("MER_NBR is null");
+        public Criteria andMerNoIsNull() {
+            addCriterion("MER_NO is null");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrIsNotNull() {
-            addCriterion("MER_NBR is not null");
+        public Criteria andMerNoIsNotNull() {
+            addCriterion("MER_NO is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrEqualTo(String value) {
-            addCriterion("MER_NBR =", value, "merNbr");
+        public Criteria andMerNoEqualTo(String value) {
+            addCriterion("MER_NO =", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrNotEqualTo(String value) {
-            addCriterion("MER_NBR <>", value, "merNbr");
+        public Criteria andMerNoNotEqualTo(String value) {
+            addCriterion("MER_NO <>", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrGreaterThan(String value) {
-            addCriterion("MER_NBR >", value, "merNbr");
+        public Criteria andMerNoGreaterThan(String value) {
+            addCriterion("MER_NO >", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrGreaterThanOrEqualTo(String value) {
-            addCriterion("MER_NBR >=", value, "merNbr");
+        public Criteria andMerNoGreaterThanOrEqualTo(String value) {
+            addCriterion("MER_NO >=", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrLessThan(String value) {
-            addCriterion("MER_NBR <", value, "merNbr");
+        public Criteria andMerNoLessThan(String value) {
+            addCriterion("MER_NO <", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrLessThanOrEqualTo(String value) {
-            addCriterion("MER_NBR <=", value, "merNbr");
+        public Criteria andMerNoLessThanOrEqualTo(String value) {
+            addCriterion("MER_NO <=", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrLike(String value) {
-            addCriterion("MER_NBR like", value, "merNbr");
+        public Criteria andMerNoLike(String value) {
+            addCriterion("MER_NO like", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrNotLike(String value) {
-            addCriterion("MER_NBR not like", value, "merNbr");
+        public Criteria andMerNoNotLike(String value) {
+            addCriterion("MER_NO not like", value, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrIn(List<String> values) {
-            addCriterion("MER_NBR in", values, "merNbr");
+        public Criteria andMerNoIn(List<String> values) {
+            addCriterion("MER_NO in", values, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrNotIn(List<String> values) {
-            addCriterion("MER_NBR not in", values, "merNbr");
+        public Criteria andMerNoNotIn(List<String> values) {
+            addCriterion("MER_NO not in", values, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrBetween(String value1, String value2) {
-            addCriterion("MER_NBR between", value1, value2, "merNbr");
+        public Criteria andMerNoBetween(String value1, String value2) {
+            addCriterion("MER_NO between", value1, value2, "merNo");
             return (Criteria) this;
         }
 
-        public Criteria andMerNbrNotBetween(String value1, String value2) {
-            addCriterion("MER_NBR not between", value1, value2, "merNbr");
+        public Criteria andMerNoNotBetween(String value1, String value2) {
+            addCriterion("MER_NO not between", value1, value2, "merNo");
             return (Criteria) this;
         }
 
@@ -344,52 +344,52 @@ public class MerOrderSumExample {
         }
 
         public Criteria andClearTimeEqualTo(Date value) {
-            addCriterion("CLEAR_TIME =", value, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME =", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeNotEqualTo(Date value) {
-            addCriterion("CLEAR_TIME <>", value, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME <>", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeGreaterThan(Date value) {
-            addCriterion("CLEAR_TIME >", value, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME >", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("CLEAR_TIME >=", value, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME >=", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeLessThan(Date value) {
-            addCriterion("CLEAR_TIME <", value, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME <", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeLessThanOrEqualTo(Date value) {
-            addCriterion("CLEAR_TIME <=", value, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME <=", value, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeIn(List<Date> values) {
-            addCriterion("CLEAR_TIME in", values, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME in", values, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeNotIn(List<Date> values) {
-            addCriterion("CLEAR_TIME not in", values, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME not in", values, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeBetween(Date value1, Date value2) {
-            addCriterion("CLEAR_TIME between", value1, value2, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME between", value1, value2, "clearTime");
             return (Criteria) this;
         }
 
         public Criteria andClearTimeNotBetween(Date value1, Date value2) {
-            addCriterion("CLEAR_TIME not between", value1, value2, "clearTime");
+            addCriterionForJDBCDate("CLEAR_TIME not between", value1, value2, "clearTime");
             return (Criteria) this;
         }
 
@@ -453,6 +453,186 @@ public class MerOrderSumExample {
             return (Criteria) this;
         }
 
+        public Criteria andTotalSuccessAmtIsNull() {
+            addCriterion("TOTAL_SUCCESS_AMT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtIsNotNull() {
+            addCriterion("TOTAL_SUCCESS_AMT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_SUCCESS_AMT =", value, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtNotEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_SUCCESS_AMT <>", value, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtGreaterThan(BigDecimal value) {
+            addCriterion("TOTAL_SUCCESS_AMT >", value, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_SUCCESS_AMT >=", value, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtLessThan(BigDecimal value) {
+            addCriterion("TOTAL_SUCCESS_AMT <", value, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_SUCCESS_AMT <=", value, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtIn(List<BigDecimal> values) {
+            addCriterion("TOTAL_SUCCESS_AMT in", values, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtNotIn(List<BigDecimal> values) {
+            addCriterion("TOTAL_SUCCESS_AMT not in", values, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("TOTAL_SUCCESS_AMT between", value1, value2, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessAmtNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("TOTAL_SUCCESS_AMT not between", value1, value2, "totalSuccessAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtIsNull() {
+            addCriterion("TOTAL_FAIL_AMT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtIsNotNull() {
+            addCriterion("TOTAL_FAIL_AMT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_FAIL_AMT =", value, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtNotEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_FAIL_AMT <>", value, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtGreaterThan(BigDecimal value) {
+            addCriterion("TOTAL_FAIL_AMT >", value, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_FAIL_AMT >=", value, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtLessThan(BigDecimal value) {
+            addCriterion("TOTAL_FAIL_AMT <", value, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_FAIL_AMT <=", value, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtIn(List<BigDecimal> values) {
+            addCriterion("TOTAL_FAIL_AMT in", values, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtNotIn(List<BigDecimal> values) {
+            addCriterion("TOTAL_FAIL_AMT not in", values, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("TOTAL_FAIL_AMT between", value1, value2, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailAmtNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("TOTAL_FAIL_AMT not between", value1, value2, "totalFailAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtIsNull() {
+            addCriterion("TOTAL_UNCHECK_AMT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtIsNotNull() {
+            addCriterion("TOTAL_UNCHECK_AMT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_UNCHECK_AMT =", value, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtNotEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_UNCHECK_AMT <>", value, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtGreaterThan(BigDecimal value) {
+            addCriterion("TOTAL_UNCHECK_AMT >", value, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_UNCHECK_AMT >=", value, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtLessThan(BigDecimal value) {
+            addCriterion("TOTAL_UNCHECK_AMT <", value, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("TOTAL_UNCHECK_AMT <=", value, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtIn(List<BigDecimal> values) {
+            addCriterion("TOTAL_UNCHECK_AMT in", values, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtNotIn(List<BigDecimal> values) {
+            addCriterion("TOTAL_UNCHECK_AMT not in", values, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("TOTAL_UNCHECK_AMT between", value1, value2, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckAmtNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("TOTAL_UNCHECK_AMT not between", value1, value2, "totalUncheckAmt");
+            return (Criteria) this;
+        }
+
         public Criteria andTotalCountIsNull() {
             addCriterion("TOTAL_COUNT is null");
             return (Criteria) this;
@@ -510,6 +690,186 @@ public class MerOrderSumExample {
 
         public Criteria andTotalCountNotBetween(Integer value1, Integer value2) {
             addCriterion("TOTAL_COUNT not between", value1, value2, "totalCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountIsNull() {
+            addCriterion("TOTAL_SUCCESS_COUNT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountIsNotNull() {
+            addCriterion("TOTAL_SUCCESS_COUNT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountEqualTo(Integer value) {
+            addCriterion("TOTAL_SUCCESS_COUNT =", value, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountNotEqualTo(Integer value) {
+            addCriterion("TOTAL_SUCCESS_COUNT <>", value, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountGreaterThan(Integer value) {
+            addCriterion("TOTAL_SUCCESS_COUNT >", value, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("TOTAL_SUCCESS_COUNT >=", value, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountLessThan(Integer value) {
+            addCriterion("TOTAL_SUCCESS_COUNT <", value, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountLessThanOrEqualTo(Integer value) {
+            addCriterion("TOTAL_SUCCESS_COUNT <=", value, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountIn(List<Integer> values) {
+            addCriterion("TOTAL_SUCCESS_COUNT in", values, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountNotIn(List<Integer> values) {
+            addCriterion("TOTAL_SUCCESS_COUNT not in", values, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountBetween(Integer value1, Integer value2) {
+            addCriterion("TOTAL_SUCCESS_COUNT between", value1, value2, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalSuccessCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("TOTAL_SUCCESS_COUNT not between", value1, value2, "totalSuccessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountIsNull() {
+            addCriterion("TOTAL_FAIL_COUNT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountIsNotNull() {
+            addCriterion("TOTAL_FAIL_COUNT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountEqualTo(Integer value) {
+            addCriterion("TOTAL_FAIL_COUNT =", value, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountNotEqualTo(Integer value) {
+            addCriterion("TOTAL_FAIL_COUNT <>", value, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountGreaterThan(Integer value) {
+            addCriterion("TOTAL_FAIL_COUNT >", value, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("TOTAL_FAIL_COUNT >=", value, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountLessThan(Integer value) {
+            addCriterion("TOTAL_FAIL_COUNT <", value, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountLessThanOrEqualTo(Integer value) {
+            addCriterion("TOTAL_FAIL_COUNT <=", value, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountIn(List<Integer> values) {
+            addCriterion("TOTAL_FAIL_COUNT in", values, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountNotIn(List<Integer> values) {
+            addCriterion("TOTAL_FAIL_COUNT not in", values, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountBetween(Integer value1, Integer value2) {
+            addCriterion("TOTAL_FAIL_COUNT between", value1, value2, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalFailCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("TOTAL_FAIL_COUNT not between", value1, value2, "totalFailCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountIsNull() {
+            addCriterion("TOTAL_UNCHECK_COUNT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountIsNotNull() {
+            addCriterion("TOTAL_UNCHECK_COUNT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountEqualTo(Integer value) {
+            addCriterion("TOTAL_UNCHECK_COUNT =", value, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountNotEqualTo(Integer value) {
+            addCriterion("TOTAL_UNCHECK_COUNT <>", value, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountGreaterThan(Integer value) {
+            addCriterion("TOTAL_UNCHECK_COUNT >", value, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("TOTAL_UNCHECK_COUNT >=", value, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountLessThan(Integer value) {
+            addCriterion("TOTAL_UNCHECK_COUNT <", value, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountLessThanOrEqualTo(Integer value) {
+            addCriterion("TOTAL_UNCHECK_COUNT <=", value, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountIn(List<Integer> values) {
+            addCriterion("TOTAL_UNCHECK_COUNT in", values, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountNotIn(List<Integer> values) {
+            addCriterion("TOTAL_UNCHECK_COUNT not in", values, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountBetween(Integer value1, Integer value2) {
+            addCriterion("TOTAL_UNCHECK_COUNT between", value1, value2, "totalUncheckCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalUncheckCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("TOTAL_UNCHECK_COUNT not between", value1, value2, "totalUncheckCount");
             return (Criteria) this;
         }
 

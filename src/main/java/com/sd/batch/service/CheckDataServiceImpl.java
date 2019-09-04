@@ -259,7 +259,7 @@ public class CheckDataServiceImpl implements CheckDataService{
 		ClearChannelOrder clearChannelOrder = channelOrderPreCheckExtendMapper.clearChannelOrder(channelCode, checkDate);
 		ChannelOrderSum channelOrderSum = new ChannelOrderSum();
 		channelOrderSum.setChannelCode(channelCode);
-		channelOrderSum.setClearDate(sysInfoMapper.selectByPrimaryKey(SysNbr.BATCH_NAME).getNowDate());
+		channelOrderSum.setClearDate(checkDate);
 		channelOrderSum.setSettleNbr(IdSeqFactory.getIdSeqByTimestamp(ChannelCode.MOCK));
 		channelOrderSum.setTotalCount(clearChannelOrder.getTotalCount());
 		channelOrderSum.setTotalAmt(clearChannelOrder.getTotalAmt());
