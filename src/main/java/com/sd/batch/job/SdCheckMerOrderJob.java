@@ -45,9 +45,9 @@ public class SdCheckMerOrderJob {
 	private Step cleanMerOrderStep;
 	
 	@Bean
-	public Job checkDataJob() {
-		log.info("down check file job start");
-		return jobBuilderFactory.get("checkDataJob")
+	public Job checkMerOrderJob() {
+		log.info("checkMerOrder job start");
+		return jobBuilderFactory.get("checkMerOrderJob")
 				.incrementer(new RunIdIncrementer())
 				//对账数据准备
 				.start(prepareMerOrderStep)
