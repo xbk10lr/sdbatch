@@ -1,23 +1,17 @@
 package com.sd.batch.controller;
 
-import org.joda.time.DateTime;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParametersBuilder;
-import org.springframework.batch.core.JobParametersInvalidException;
-import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
-import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
-import org.springframework.batch.core.repository.JobRestartException;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sd.batch.base.constants.JobConstants;
-import com.sd.batch.base.utils.DateUtil;
 import com.sd.batch.base.utils.SpringUtils;
+import com.sd.batch.base.utils.StringUtil;
 import com.sd.batch.schedule.AbstractQuarzJobBean;
 import com.sd.batch.schedule.CronTriggerFactory;
+import com.sd.batch.service.AsyncService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,7 +29,7 @@ public class JobController {
 	private CronTriggerFactory cronTriggerFactory;
 	
 	@Autowired
-	private JobLauncher jobLauncher;
+	private AsyncService asyncService;
 	
 	/**
 	 * 重跑job
@@ -43,32 +37,17 @@ public class JobController {
 	 * @return
 	 */
 	@RequestMapping("/restart")
-	public boolean jobsRestart(String jobName,String date) {
-		Job job = (Job) SpringUtils.getBeanObj(jobName);
-		JobParametersBuilder jobParameters = new JobParametersBuilder();
-		if(StringUtils.hasText(date)) {
-			jobParameters.addString("date", date);
-		}else {
-			jobParameters.addString("date", DateTime.now().minusDays(1).toString(DateUtil.DATE_FORMAT_YYYY_MM_DD));
-		}
-		jobParameters.addString("time", DateTime.now().toString(DateUtil.DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS));
-		try {
-			jobLauncher.run(job, jobParameters.toJobParameters());
+	public Boolean jobsRestart(String jobName,String date,HttpServletResponse response) {
+		log.info("start/restart job , jobName:"+jobName+", date:"+date);
+		//跨域返回设置响应头
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		//校验任务名是否为空
+		if(StringUtil.isStringEmpty(jobName)){
+			return false;
+		} else {
+			asyncService.runJob(jobName, date);
 			return true;
-		} catch (JobExecutionAlreadyRunningException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JobRestartException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JobInstanceAlreadyCompleteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JobParametersInvalidException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		return false;
 	}
 	
 	/**
@@ -77,27 +56,17 @@ public class JobController {
 	 * @return
 	 */
 	@RequestMapping("/continue")
-	public boolean jobsContinue(String jobName,String date) {
-		Job job = (Job) SpringUtils.getBeanObj(jobName);
-		JobParametersBuilder jobParameters = new JobParametersBuilder();
-		if(StringUtils.hasText(date)) {
-			jobParameters.addString("date", date);
-		}else {
-			jobParameters.addString("date", DateTime.now().minusDays(1).toString(DateUtil.DATE_FORMAT_YYYY_MM_DD));
-		}
-		try {
-			jobLauncher.run(job, jobParameters.toJobParameters());
+	public boolean jobsContinue(String jobName,String date,HttpServletResponse response) {
+		log.info("continue job , jobName:"+jobName+", date:"+date);
+		//跨域返回设置响应头
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		//校验任务名是否为空
+		if(StringUtil.isStringEmpty(jobName)){
+			return false;
+		} else {
+			asyncService.continueJob(jobName, date);
 			return true;
-		} catch (JobExecutionAlreadyRunningException e) {
-			log.error("continue job error:{}",e);
-		} catch (JobRestartException e) {
-			log.error("continue job error:{}",e);
-		} catch (JobInstanceAlreadyCompleteException e) {
-			log.error("continue job error:{}",e);
-		} catch (JobParametersInvalidException e) {
-			log.error("continue job error:{}",e);
 		}
-		return false;
 	}
 	
 	/**
@@ -107,8 +76,10 @@ public class JobController {
 	 * @return
 	 */
 	@RequestMapping("/create")
-	public boolean createJob(String expression,String jobName) {
+	public boolean createJob(String expression,String jobName,HttpServletResponse response) {
 		log.info("start create Job, expression:{},taskId:{}",expression,jobName);
+		//跨域返回设置响应头
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		AbstractQuarzJobBean jobBean = (AbstractQuarzJobBean) SpringUtils.getBeanObj(jobName.trim()+JobConstants.QUARTZ_JOB_BEAN_SUFFIX);
 		boolean flag = cronTriggerFactory.createTimingTask(expression, jobName, jobBean.getClass());
 		return flag;
@@ -120,8 +91,10 @@ public class JobController {
 	 * @return
 	 */
 	@RequestMapping("/stop")
-	public boolean stopJob(String jobName) {
+	public boolean stopJob(String jobName,HttpServletResponse response) {
 		log.info("停止定时任务:{}",jobName);
+		//跨域返回设置响应头
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean flag = cronTriggerFactory.stopTimingTask(jobName);
 		return flag;
 	}

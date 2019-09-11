@@ -41,7 +41,8 @@ public class SdTestJob {
 	public Job testJob() {
 		log.info("testjob start");
 		return jobBuilderFactory.get("testJob")
-				.incrementer(new RunIdIncrementer())
+				//增加这个使每个job的运行ID都唯一
+//				.incrementer(new RunIdIncrementer())
 				.start(test1Step)
 				.next(test2Step)
 				.next(test3Step)
