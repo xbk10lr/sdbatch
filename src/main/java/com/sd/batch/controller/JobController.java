@@ -56,15 +56,15 @@ public class JobController {
 	 * @return
 	 */
 	@RequestMapping("/continue")
-	public boolean jobsContinue(String jobName,String date,HttpServletResponse response) {
-		log.info("continue job , jobName:"+jobName+", date:"+date);
+	public boolean jobsContinue(Long jobExecutionId,HttpServletResponse response) {
+		log.info("continue job , jobExecutionId:"+jobExecutionId);
 		//跨域返回设置响应头
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		//校验任务名是否为空
-		if(StringUtil.isStringEmpty(jobName)){
+		if(jobExecutionId == null){
 			return false;
 		} else {
-			asyncService.continueJob(jobName, date);
+			asyncService.continueJob(jobExecutionId);
 			return true;
 		}
 	}
