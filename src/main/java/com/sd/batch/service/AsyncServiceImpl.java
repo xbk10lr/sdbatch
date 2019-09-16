@@ -17,9 +17,11 @@ import org.springframework.util.StringUtils;
 
 import com.sd.batch.base.utils.DateUtil;
 import com.sd.batch.base.utils.SpringUtils;
+import com.sd.batch.dto.generate.BatchJobExecution;
 import com.sd.batch.dto.generate.BatchJobExecutionParams;
 import com.sd.batch.dto.generate.BatchJobExecutionParamsExample;
 import com.sd.batch.dto.generate.BatchJobInstance;
+import com.sd.batch.mapper.BatchJobExecutionMapper;
 import com.sd.batch.mapper.BatchJobExecutionParamsMapper;
 import com.sd.batch.mapper.BatchJobInstanceMapper;
 
@@ -37,6 +39,9 @@ public class AsyncServiceImpl implements AsyncService{
 	
 	@Autowired
 	private BatchJobInstanceMapper batchJobInstanceMapper;
+	
+	@Autowired
+	private BatchJobExecutionMapper batchJobExecutionMapper;
 	
 	@Async("taskExecutor")
 	@Override
@@ -67,6 +72,7 @@ public class AsyncServiceImpl implements AsyncService{
 		}
 	}
 
+	@Async("taskExecutor")
 	@Override
 	public void continueJob(Long jobExecutionId) {
 		BatchJobExecutionParamsExample example = new BatchJobExecutionParamsExample();
@@ -80,7 +86,8 @@ public class AsyncServiceImpl implements AsyncService{
 				jobParameters.addDate(param.getKeyName(), param.getDateVal());
 			}
 		}
-		BatchJobInstance batchJobInstance = batchJobInstanceMapper.selectByPrimaryKey(jobExecutionId);
+		BatchJobExecution batchJobExecution = batchJobExecutionMapper.selectByPrimaryKey(jobExecutionId);
+		BatchJobInstance batchJobInstance = batchJobInstanceMapper.selectByPrimaryKey(batchJobExecution.getJobInstanceId());
 		Job job = (Job) SpringUtils.getBeanObj(batchJobInstance.getJobName());
 		try {
 			jobLauncher.run(job, jobParameters.toJobParameters());
