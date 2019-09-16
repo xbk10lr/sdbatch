@@ -36,7 +36,7 @@ public class ChannelOrder {
 
     private Date crtDateTime;
 
-    private Date dateLastMaint;
+    private Date dateLastmaint;
 
     public String getOrderSeqNbr() {
         return orderSeqNbr;
@@ -166,11 +166,11 @@ public class ChannelOrder {
         this.crtDateTime = crtDateTime;
     }
 
-    public Date getDateLastMaint() {
-        return dateLastMaint;
+    public Date getDateLastmaint() {
+        return dateLastmaint;
     }
 
-    public void setDateLastMaint(Date dateLastMaint) {
-        this.dateLastMaint = dateLastMaint;
+    public void setDateLastmaint(Date dateLastmaint) {
+        this.dateLastmaint = dateLastmaint;
     }
 }

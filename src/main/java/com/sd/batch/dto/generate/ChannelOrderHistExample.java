@@ -884,52 +884,52 @@ public class ChannelOrderHistExample {
         }
 
         public Criteria andTransTimeEqualTo(Date value) {
-            addCriterion("TRANS_TIME =", value, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME =", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeNotEqualTo(Date value) {
-            addCriterion("TRANS_TIME <>", value, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME <>", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeGreaterThan(Date value) {
-            addCriterion("TRANS_TIME >", value, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME >", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("TRANS_TIME >=", value, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME >=", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeLessThan(Date value) {
-            addCriterion("TRANS_TIME <", value, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME <", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeLessThanOrEqualTo(Date value) {
-            addCriterion("TRANS_TIME <=", value, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME <=", value, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeIn(List<Date> values) {
-            addCriterion("TRANS_TIME in", values, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME in", values, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeNotIn(List<Date> values) {
-            addCriterion("TRANS_TIME not in", values, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME not in", values, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeBetween(Date value1, Date value2) {
-            addCriterion("TRANS_TIME between", value1, value2, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME between", value1, value2, "transTime");
             return (Criteria) this;
         }
 
         public Criteria andTransTimeNotBetween(Date value1, Date value2) {
-            addCriterion("TRANS_TIME not between", value1, value2, "transTime");
+            addCriterionForJDBCDate("TRANS_TIME not between", value1, value2, "transTime");
             return (Criteria) this;
         }
 
@@ -1130,146 +1130,6 @@ public class ChannelOrderHistExample {
 
         public Criteria andOrderStatusNotBetween(String value1, String value2) {
             addCriterion("ORDER_STATUS not between", value1, value2, "orderStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgIsNull() {
-            addCriterion("RESP_MSG is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgIsNotNull() {
-            addCriterion("RESP_MSG is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgEqualTo(String value) {
-            addCriterion("RESP_MSG =", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgNotEqualTo(String value) {
-            addCriterion("RESP_MSG <>", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgGreaterThan(String value) {
-            addCriterion("RESP_MSG >", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgGreaterThanOrEqualTo(String value) {
-            addCriterion("RESP_MSG >=", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgLessThan(String value) {
-            addCriterion("RESP_MSG <", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgLessThanOrEqualTo(String value) {
-            addCriterion("RESP_MSG <=", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgLike(String value) {
-            addCriterion("RESP_MSG like", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgNotLike(String value) {
-            addCriterion("RESP_MSG not like", value, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgIn(List<String> values) {
-            addCriterion("RESP_MSG in", values, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgNotIn(List<String> values) {
-            addCriterion("RESP_MSG not in", values, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgBetween(String value1, String value2) {
-            addCriterion("RESP_MSG between", value1, value2, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespMsgNotBetween(String value1, String value2) {
-            addCriterion("RESP_MSG not between", value1, value2, "respMsg");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeIsNull() {
-            addCriterion("RESP_CODE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeIsNotNull() {
-            addCriterion("RESP_CODE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeEqualTo(String value) {
-            addCriterion("RESP_CODE =", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeNotEqualTo(String value) {
-            addCriterion("RESP_CODE <>", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeGreaterThan(String value) {
-            addCriterion("RESP_CODE >", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("RESP_CODE >=", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeLessThan(String value) {
-            addCriterion("RESP_CODE <", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeLessThanOrEqualTo(String value) {
-            addCriterion("RESP_CODE <=", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeLike(String value) {
-            addCriterion("RESP_CODE like", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeNotLike(String value) {
-            addCriterion("RESP_CODE not like", value, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeIn(List<String> values) {
-            addCriterion("RESP_CODE in", values, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeNotIn(List<String> values) {
-            addCriterion("RESP_CODE not in", values, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeBetween(String value1, String value2) {
-            addCriterion("RESP_CODE between", value1, value2, "respCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andRespCodeNotBetween(String value1, String value2) {
-            addCriterion("RESP_CODE not between", value1, value2, "respCode");
             return (Criteria) this;
         }
 

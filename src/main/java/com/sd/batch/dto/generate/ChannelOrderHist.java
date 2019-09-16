@@ -34,10 +34,6 @@ public class ChannelOrderHist {
 
     private String orderStatus;
 
-    private String respMsg;
-
-    private String respCode;
-
     private Date crtDateTime;
 
     private Date dateLastmaint;
@@ -160,22 +156,6 @@ public class ChannelOrderHist {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus == null ? null : orderStatus.trim();
-    }
-
-    public String getRespMsg() {
-        return respMsg;
-    }
-
-    public void setRespMsg(String respMsg) {
-        this.respMsg = respMsg == null ? null : respMsg.trim();
-    }
-
-    public String getRespCode() {
-        return respCode;
-    }
-
-    public void setRespCode(String respCode) {
-        this.respCode = respCode == null ? null : respCode.trim();
     }
 
     public Date getCrtDateTime() {

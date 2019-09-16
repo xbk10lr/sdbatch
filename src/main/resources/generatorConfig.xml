@@ -100,10 +100,13 @@
 	</table> -->
 	<!-- <table tableName="CHANNEL_ORDER_SUM">
 	</table> -->
-	<table tableName="MER_ORDER_SUM">
-	</table>
+	<!-- <table tableName="MER_ORDER_SUM">
+	</table> -->
 	<!-- <table tableName="CHANNEL_MER_CHECK">
 	</table> -->
-	
+	<table tableName="CHANNEL_ORDER">
+	</table>
+	<table tableName="CHANNEL_ORDER_PRE_CHECK">
+	</table>
    </context>
 </generatorConfiguration>

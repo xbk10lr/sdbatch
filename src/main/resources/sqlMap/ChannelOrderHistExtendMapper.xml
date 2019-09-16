@@ -4,7 +4,7 @@
 	<sql id="Base_Column_List" >
 	    ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
 	    PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, RETURN_MSG, MER_NO, TRANS_TIME, CHECK_DATE, 
-	    CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LAST_MAINT
+	    CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
 	</sql>
     <insert id="insertChannelOrderHistFromPreCheck" parameterType="java.lang.String" >
 	   	insert into CHANNEL_ORDER_HIST (    

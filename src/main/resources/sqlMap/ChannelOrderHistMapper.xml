@@ -13,12 +13,10 @@
     <result column="RETURN_CODE" property="returnCode" jdbcType="VARCHAR" />
     <result column="RETURN_MSG" property="returnMsg" jdbcType="VARCHAR" />
     <result column="MER_NO" property="merNo" jdbcType="VARCHAR" />
-    <result column="TRANS_TIME" property="transTime" jdbcType="TIMESTAMP" />
+    <result column="TRANS_TIME" property="transTime" jdbcType="DATE" />
     <result column="CHECK_DATE" property="checkDate" jdbcType="DATE" />
     <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
     <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
-    <result column="RESP_MSG" property="respMsg" jdbcType="VARCHAR" />
-    <result column="RESP_CODE" property="respCode" jdbcType="VARCHAR" />
     <result column="CRT_DATE_TIME" property="crtDateTime" jdbcType="TIMESTAMP" />
     <result column="DATE_LASTMAINT" property="dateLastmaint" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -83,7 +81,7 @@
   <sql id="Base_Column_List" >
     ORDER_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, CHANNEL_FEE_AMT, CHANNEL_CODE, 
     PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, RETURN_MSG, MER_NO, TRANS_TIME, CHECK_DATE, 
-    CHECK_STATUS, ORDER_STATUS, RESP_MSG, RESP_CODE, CRT_DATE_TIME, DATE_LASTMAINT
+    CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sd.batch.dto.generate.ChannelOrderHistExample" >
     select
@@ -123,15 +121,13 @@
       PLAT_SEQ_NBR, DOWN_SEQ_NBR, RETURN_CODE, 
       RETURN_MSG, MER_NO, TRANS_TIME, 
       CHECK_DATE, CHECK_STATUS, ORDER_STATUS, 
-      RESP_MSG, RESP_CODE, CRT_DATE_TIME, 
-      DATE_LASTMAINT)
+      CRT_DATE_TIME, DATE_LASTMAINT)
     values (#{orderSeqNbr,jdbcType=VARCHAR}, #{transDate,jdbcType=DATE}, #{payerName,jdbcType=VARCHAR}, 
       #{transAmt,jdbcType=DECIMAL}, #{channelFeeAmt,jdbcType=DECIMAL}, #{channelCode,jdbcType=VARCHAR}, 
       #{platSeqNbr,jdbcType=VARCHAR}, #{downSeqNbr,jdbcType=VARCHAR}, #{returnCode,jdbcType=VARCHAR}, 
-      #{returnMsg,jdbcType=VARCHAR}, #{merNo,jdbcType=VARCHAR}, #{transTime,jdbcType=TIMESTAMP}, 
+      #{returnMsg,jdbcType=VARCHAR}, #{merNo,jdbcType=VARCHAR}, #{transTime,jdbcType=DATE}, 
       #{checkDate,jdbcType=DATE}, #{checkStatus,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
-      #{respMsg,jdbcType=VARCHAR}, #{respCode,jdbcType=VARCHAR}, #{crtDateTime,jdbcType=TIMESTAMP}, 
-      #{dateLastmaint,jdbcType=TIMESTAMP})
+      #{crtDateTime,jdbcType=TIMESTAMP}, #{dateLastmaint,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.sd.batch.dto.generate.ChannelOrderHist" >
     insert into CHANNEL_ORDER_HIST
@@ -181,12 +177,6 @@
       <if test="orderStatus != null" >
         ORDER_STATUS,
       </if>
-      <if test="respMsg != null" >
-        RESP_MSG,
-      </if>
-      <if test="respCode != null" >
-        RESP_CODE,
-      </if>
       <if test="crtDateTime != null" >
         CRT_DATE_TIME,
       </if>
@@ -229,7 +219,7 @@
         #{merNo,jdbcType=VARCHAR},
       </if>
       <if test="transTime != null" >
-        #{transTime,jdbcType=TIMESTAMP},
+        #{transTime,jdbcType=DATE},
       </if>
       <if test="checkDate != null" >
         #{checkDate,jdbcType=DATE},
@@ -239,12 +229,6 @@
       </if>
       <if test="orderStatus != null" >
         #{orderStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="respMsg != null" >
-        #{respMsg,jdbcType=VARCHAR},
-      </if>
-      <if test="respCode != null" >
-        #{respCode,jdbcType=VARCHAR},
       </if>
       <if test="crtDateTime != null" >
         #{crtDateTime,jdbcType=TIMESTAMP},
@@ -297,7 +281,7 @@
         MER_NO = #{record.merNo,jdbcType=VARCHAR},
       </if>
       <if test="record.transTime != null" >
-        TRANS_TIME = #{record.transTime,jdbcType=TIMESTAMP},
+        TRANS_TIME = #{record.transTime,jdbcType=DATE},
       </if>
       <if test="record.checkDate != null" >
         CHECK_DATE = #{record.checkDate,jdbcType=DATE},
@@ -307,12 +291,6 @@
       </if>
       <if test="record.orderStatus != null" >
         ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="record.respMsg != null" >
-        RESP_MSG = #{record.respMsg,jdbcType=VARCHAR},
-      </if>
-      <if test="record.respCode != null" >
-        RESP_CODE = #{record.respCode,jdbcType=VARCHAR},
       </if>
       <if test="record.crtDateTime != null" >
         CRT_DATE_TIME = #{record.crtDateTime,jdbcType=TIMESTAMP},
@@ -338,12 +316,10 @@
       RETURN_CODE = #{record.returnCode,jdbcType=VARCHAR},
       RETURN_MSG = #{record.returnMsg,jdbcType=VARCHAR},
       MER_NO = #{record.merNo,jdbcType=VARCHAR},
-      TRANS_TIME = #{record.transTime,jdbcType=TIMESTAMP},
+      TRANS_TIME = #{record.transTime,jdbcType=DATE},
       CHECK_DATE = #{record.checkDate,jdbcType=DATE},
       CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
       ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
-      RESP_MSG = #{record.respMsg,jdbcType=VARCHAR},
-      RESP_CODE = #{record.respCode,jdbcType=VARCHAR},
       CRT_DATE_TIME = #{record.crtDateTime,jdbcType=TIMESTAMP},
       DATE_LASTMAINT = #{record.dateLastmaint,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -381,7 +357,7 @@
         MER_NO = #{merNo,jdbcType=VARCHAR},
       </if>
       <if test="transTime != null" >
-        TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
+        TRANS_TIME = #{transTime,jdbcType=DATE},
       </if>
       <if test="checkDate != null" >
         CHECK_DATE = #{checkDate,jdbcType=DATE},
@@ -391,12 +367,6 @@
       </if>
       <if test="orderStatus != null" >
         ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="respMsg != null" >
-        RESP_MSG = #{respMsg,jdbcType=VARCHAR},
-      </if>
-      <if test="respCode != null" >
-        RESP_CODE = #{respCode,jdbcType=VARCHAR},
       </if>
       <if test="crtDateTime != null" >
         CRT_DATE_TIME = #{crtDateTime,jdbcType=TIMESTAMP},
@@ -419,12 +389,10 @@
       RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
       RETURN_MSG = #{returnMsg,jdbcType=VARCHAR},
       MER_NO = #{merNo,jdbcType=VARCHAR},
-      TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
+      TRANS_TIME = #{transTime,jdbcType=DATE},
       CHECK_DATE = #{checkDate,jdbcType=DATE},
       CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
       ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
-      RESP_MSG = #{respMsg,jdbcType=VARCHAR},
-      RESP_CODE = #{respCode,jdbcType=VARCHAR},
       CRT_DATE_TIME = #{crtDateTime,jdbcType=TIMESTAMP},
       DATE_LASTMAINT = #{dateLastmaint,jdbcType=TIMESTAMP}
     where ORDER_SEQ_NBR = #{orderSeqNbr,jdbcType=VARCHAR}

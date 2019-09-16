@@ -3,7 +3,8 @@
 <mapper namespace="com.sd.batch.mapper.extend.MerOrderHistExtendMapper" >
  	<sql id="Base_Column_List" >
 	    PLAT_SEQ_NBR, TRANS_DATE, PAYER_NAME, TRANS_AMT, MER_FEE_AMT, MER_SEQ_NBR, MER_NO, 
-	    TRANS_TIME, CHECK_DATE, CHECK_STATUS, ORDER_STATUS, CRT_DATE_TIME, DATE_LASTMAINT
+    TRANS_TIME, CHECK_DATE, CHECK_STATUS, ORDER_STATUS, RESP_MSG, RESP_CODE, CRT_DATE_TIME, 
+    DATE_LASTMAINT
   	</sql>
   	<insert id="insertMerOrderHistFromMerOrder" >
 	    insert into MER_ORDER_HIST (
