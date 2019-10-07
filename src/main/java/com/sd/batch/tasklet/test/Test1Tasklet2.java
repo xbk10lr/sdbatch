@@ -19,6 +19,9 @@ public class Test1Tasklet2 implements Tasklet{
 		log.info("test1taskled2启动，并成功执行");
 		System.out.println(arg1.getStepContext().getJobParameters().get(JobParameteresKey.CHECK_DATE));
 //		arg0.setExitStatus(ExitStatus.FAILED);
+		
+		Thread.sleep(100000);
+
 		return RepeatStatus.FINISHED;
 	}
 

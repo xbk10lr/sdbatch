@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.sd.batch.listener.JobCommonListener;
+
 import lombok.extern.slf4j.Slf4j;
 
 //日切队列
@@ -25,12 +27,16 @@ public class SdCutOffJob {
 	@Qualifier("cutOffStep")
 	private Step cutOffStep;
 	
+	@Autowired
+	private JobCommonListener jobCommonListener;
+	
 	@Bean
 	public Job cutOffJob() {
 		log.info("cut off job start");
 		return jobBuilderFactory.get("cutOffJob")
 				.incrementer(new RunIdIncrementer())
 				.start(cutOffStep)
+				.listener(jobCommonListener)
 				.build();
 	}
 }

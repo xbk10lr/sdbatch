@@ -38,6 +38,4 @@ public class CutOffTasklet implements Tasklet{
 		log.info("更新成功,系统日期"+sysInfo.toString());
 		return RepeatStatus.FINISHED;
 	}
-
-	
 }

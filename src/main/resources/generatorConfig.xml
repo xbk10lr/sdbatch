@@ -49,61 +49,6 @@
       </javaClientGenerator>
 
       <!-- 数据库表名字和我们的entity类对应的映射指定 -->
-      <!-- <table tableName="CHANNEL_ORDER" domainObjectName="ChannelOrder"/>
-      <table tableName="MER_ORDER" domainObjectName="MerOrder"/>
-      <table tableName="CHANNEL_ORDER_HIST" domainObjectName="ChannelOrderHist"/>
-      <table tableName="MER_ORDER_HIST" domainObjectName="MerOrderHist"/>
-      <table tableName="DOWN_ORDER" domainObjectName="DownOrder"/>
-      <table tableName="SYS_INFO" domainObjectName="SysInfo"/>
-      <table tableName="CHECK_CHANNEL_REG" domainObjectName="CheckChannelReg"/>
-      <table tableName="CHANNEL_ORDER_SUM" domainObjectName="ChannelOrderSum"/>
-      <table tableName="MER_ORDER_SUM" domainObjectName="MerOrderSum"/>
-      <table tableName="CHECK_ERROR" domainObjectName="CheckError"/>
-      <table tableName="CHANNEL_MER_CHECK" domainObjectName="ChannelMerCheck"/>
-      <table tableName="MER_CHECK_FILE_INFO" domainObjectName="MerCheckFileInfo"/>
-      <table tableName="JOB_TASK_INFO" domainObjectName="JobTaskInfo"/>
-
-	<table tableName="BATCH_JOB_INSTANCE">
-    </table>
-    <table tableName="BATCH_JOB_EXECUTION">
-    </table>
-    <table tableName="BATCH_JOB_EXECUTION_PARAMS">
-    </table>
-    <table tableName="BATCH_STEP_EXECUTION">
-    </table>
-    <table tableName="BATCH_STEP_EXECUTION_CONTEXT">
-    </table>
-    <table tableName="BATCH_JOB_EXECUTION_CONTEXT">
-    </table>
-    <table tableName="BATCH_STEP_EXECUTION_SEQ">
-    </table>
-    <table tableName="BATCH_JOB_EXECUTION_SEQ">
-    </table>
-    <table tableName="BATCH_JOB_SEQ">
-	</table> -->
-	
-	<!-- <table tableName="CHANNEL_ORDER">
-	</table>
-	<table tableName="MER_ORDER">
-	</table>
-	<table tableName="CHANNEL_ORDER_PRE_CHECK">
-	</table>
-	<table tableName="MER_ORDER_PRE_CHECK">
-	</table>
-	<table tableName="CHANNEL_ORDER_HIST">
-	</table>
-	<table tableName="MER_ORDER_HIST">
-	</table>
-	<table tableName="DOWN_ORDER">
-	</table>
-	<table tableName="DOWN_ORDER_HIST">
-	</table> -->
-	<!-- <table tableName="CHANNEL_ORDER_SUM">
-	</table> -->
-	<!-- <table tableName="MER_ORDER_SUM">
-	</table> -->
-	<!-- <table tableName="CHANNEL_MER_CHECK">
-	</table> -->
 	<table tableName="CHANNEL_ORDER">
 	</table>
 	<table tableName="CHANNEL_ORDER_PRE_CHECK">

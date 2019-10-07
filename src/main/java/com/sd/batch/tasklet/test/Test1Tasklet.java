@@ -22,6 +22,7 @@ public class Test1Tasklet implements Tasklet{
 //		if(true){
 //			throw new Exception("test fail");
 //		}
+		Thread.sleep(100000);
 		return RepeatStatus.FINISHED;
 	}
 
